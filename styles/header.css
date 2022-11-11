@@ -1,0 +1,204 @@
+@keyframes pixelateIn {
+	from {
+		filter: blur(50rem);
+	}
+	to {
+		filter: blur(0);
+	}
+}
+
+@keyframes fadeInFromAbove {
+	from {
+		opacity: 0;
+		transform: translateY(-100%) !important;
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+#name {
+	filter: blur(50rem);
+	animation: pixelateIn 5s ease-in forwards 1.5s;
+}
+
+#topHeaderText {
+	animation: fadeInFromAbove 1.5s ease-in forwards 3.5s;
+	opacity: 0;
+	display: block;
+}
+
+header {
+	width: 100vw;
+	height: 100vh;
+	/* background-image: var(--main-looping-gradient); */
+	background-size: 200% 100%;
+	background-position: 0 0;
+	position: relative;
+	/* inset shadow */
+	box-shadow: inset 0 0 100rem 0 var(--main-background-color);
+	overflow: hidden;
+}
+
+#gridContainer {
+	width: 100vw;
+	height: 100vh;
+	display: grid;
+	--cell-size: 100px;
+	--rowCount: 10;
+	--colCount: 10;
+	grid-template-rows: repeat(var(--rowCount), 1fr);
+	grid-template-columns: repeat(var(--colCount), 1fr);
+	position: fixed;
+	top: 0;
+	left: 0;
+}
+
+.cell {
+	position: relative;
+	transition: scale 0.5s ease;
+	/* animation: fadeIn 0.5s ease-in forwards; */
+	/* opacity: 0; */
+	--animation-delay: 1s;
+}
+
+.cell.animating {
+	animation: animateCell 1s ease-in forwards;
+}
+
+@keyframes animateCell {
+	0% {
+		opacity: 1;
+	}
+	50% {
+		opacity: 0.25;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+@keyframes shrink {
+	from {
+		scale: 1.01;
+		opacity: 0.15;
+	}
+	to {
+		scale: 1;
+		opacity: 1;
+	}
+}
+
+.cell:hover {
+	scale: 0.95;
+}
+
+.cell:before {
+	background-color: var(--test, var(--main-background-color));
+	content: "";
+	transition: opacity 0.5s ease-out;
+	position: absolute;
+	inset: 0.5px;
+	scale: 1.5;
+}
+
+.cell.dontAnimateIntro:before {
+	scale: 1 !important;
+	opacity: 1 !important;
+}
+
+.cell:not(.dontAnimateIntro):before {
+	animation-name: shrink;
+	animation-duration: 0.5s;
+	animation-timing-function: ease-out;
+	animation-delay: var(--animation-delay);
+	animation-fill-mode: forwards;
+}
+
+@keyframes loopBG {
+	0% {
+		background-position: 0 0;
+	}
+	100% {
+		background-position: -200% 0;
+	}
+}
+
+#gridGradient {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	background-image: var(--main-looping-gradient);
+	animation: loopBG 5s ease infinite;
+	box-shadow: inset 0 0 100rem 10rem var(--main-background-color);
+}
+
+/* Makes a circle crop that leaves from the center */
+@keyframes fadeInGrid {
+	from {
+		clip-path: circle(0% at 50% 50%);
+	}
+
+	to {
+		clip-path: circle(100% at 50% 50%);
+	}
+}
+
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+	}
+
+	to {
+		opacity: 1;
+	}
+}
+
+#name {
+	color: var(--main-background-color);
+	font-family: var(--header-font);
+	font-size: 8rem;
+	line-height: 1;
+	font-weight: bold;
+	text-align: center;
+	pointer-events: none;
+	white-space: nowrap;
+	position: relative;
+	left: 50%;
+	transform: translateX(-50%);
+	color: var(--main-font-color);
+	pointer-events: none;
+}
+
+#name span {
+	transition: opacity 0.5s ease-out;
+	pointer-events: visible;
+	user-select: none;
+	-webkit-user-select: none;
+	cursor: default;
+}
+
+#name span:hover {
+	opacity: 0.5;
+}
+
+#name span:active {
+	opacity: 0.25;
+}
+
+#headerText {
+	position: absolute;
+	top: 45%;
+	left: 50%;
+	width: 70%;
+	transform: translate(-50%, -50%);
+	font-family: var(--header-font);
+	font-weight: bolder;
+	font-size: 2.5rem;
+	line-height: 1.6;
+	text-align: center;
+	pointer-events: none;
+}

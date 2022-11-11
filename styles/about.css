@@ -1,0 +1,170 @@
+#about {
+	padding-bottom: 10rem;
+	box-shadow: 0rem 1rem 2rem 0.5rem var(--main-background-color),
+		0rem -1rem 2rem 0.5rem var(--main-background-color);
+}
+
+#aboutHeader {
+	color: var(--main-font-color);
+	width: 100vw;
+	text-align: center;
+	font-size: 2.5rem;
+	padding-top: 5rem;
+	margin-bottom: 5rem;
+	display: grid;
+	place-items: center;
+}
+
+#aboutHeader.animateOut {
+	background-color: transparent;
+}
+
+#aboutHeaderText {
+	width: 70%;
+}
+
+@keyframes blink {
+	from {
+		opacity: 1;
+	}
+	50% {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+#blinker {
+	width: 1rem;
+	height: 2.5rem;
+	display: inline-block;
+	background-color: var(--main-font-color);
+	animation: blink 1.5s ease-out infinite;
+	margin-left: 0.5rem;
+}
+
+.aboutCard {
+	width: 30rem;
+	aspect-ratio: 1.618033988749894;
+	position: relative;
+	overflow: hidden;
+	background-color: var(--outset-background-color);
+	border-radius: 2rem;
+	--mouseX: 50%;
+	--mouseY: 50%;
+	--xOffsetMultiplier: 1;
+	transform: translateX(
+		calc(calc(var(--xOffset) * 1px) * var(--xOffsetMultiplier))
+	);
+	cursor: pointer;
+	transition: filter 0.25s, box-shadow 0.25s, transform 0.05s;
+	transition-timing-function: ease-in-out;
+	box-shadow: 0 0 1rem 0.5rem rgba(0, 0, 0, 0.5);
+	will-change: transform, filter, box-shadow;
+}
+
+#education .aboutCard {
+	--xOffsetMultiplier: -1;
+}
+
+.aboutCard:hover {
+	filter: brightness(1.25);
+	box-shadow: 0 0 1.5rem 0.5rem rgba(0, 0, 0, 0.75);
+}
+
+.aboutCardBG {
+	width: calc(100% - 2px);
+	height: calc(100% - 2px);
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background-color: var(--main-font-color);
+	object-fit: cover;
+	z-index: 0;
+}
+
+.aboutCardContent {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 1;
+}
+
+.aboutCardHeader {
+	font-size: 2rem;
+	background: linear-gradient(0deg, rgba(0, 0, 0, 0.5) 80%, rgba(0, 0, 0, 0));
+	position: absolute;
+	bottom: 0;
+	width: 97%;
+	padding-right: 5%;
+	font-weight: 600;
+	text-align: right;
+	font-family: var(--header-font);
+}
+
+.aboutCardSubtitle {
+	width: 100%;
+	font-size: 1.25rem;
+	font-weight: 200;
+	padding-bottom: 0.5rem;
+}
+
+.aboutCardIcon {
+	height: 60%;
+	position: absolute;
+	left: 25%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	filter: drop-shadow(0 0 1rem rgba(0, 0, 0, 0.5));
+}
+
+.aboutCardsContainer {
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+}
+
+/* .aboutCard::after {
+	content: "";
+	position: absolute;
+	transform: translate(calc(var(--mouseX) - 50%), calc(var(--mouseY)) - 50%);
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	opacity: 0;
+	aspect-ratio: 1;
+	background: radial-gradient(
+		circle at 50% 50%,
+		rgba(255, 255, 255, 0.15) 0%,
+		rgba(255, 255, 255, 0) 70%
+	);
+	z-index: 2;
+	transition: opacity 0.5s ease-in-out;
+	will-change: top left;
+}
+
+.aboutCard:hover::after {
+	opacity: 1;
+} */
+
+.aboutSectionHeaderWrapper {
+	width: calc(100% - 12rem);
+	display: flex;
+	flex-direction: row;
+	justify-content: start;
+	align-items: center;
+	margin-left: 5rem;
+}
+
+#education .aboutSectionHeaderWrapper {
+	justify-content: end;
+}
+
+#education .aboutCardsContainer {
+	flex-direction: row-reverse;
+}

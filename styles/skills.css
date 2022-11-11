@@ -1,0 +1,160 @@
+#skills {
+	position: relative;
+	min-height: 300vh;
+	width: 100vw;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.skillsContainer {
+	position: sticky;
+	top: 0;
+	z-index: 1000;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	display: inline-flex;
+	width: clamp(20rem, 50vw, 50rem);
+}
+
+.skillsContainerHeader {
+	font-size: 4rem;
+	font-family: var(--title-font);
+	text-align: left;
+	margin-left: 2rem;
+}
+
+.skillsContainerHeader::after {
+	font-family: var(--title-font) !important;
+}
+
+.skillContainer {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	align-content: center;
+	padding: 0;
+	filter: drop-shadow(0.5rem 0.5rem 1rem rgba(0, 0, 0, 0.5));
+	/* Adds 1 rem of spacing */
+	margin: 1rem;
+	opacity: 0;
+	will-change: transform, opacity;
+}
+
+.skillContainer.animateIn {
+	animation-name: slideInFromLeft;
+	animation-duration: 1.5s;
+	animation-timing-function: ease-in-out;
+	animation-fill-mode: forwards;
+	animation-delay: var(--animation-delay);
+	opacity: 0;
+}
+
+.skillElementsContainer {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	align-content: center;
+	width: 100%;
+	flex-wrap: wrap;
+}
+
+@keyframes slideInFromLeft {
+	0% {
+		transform: translateX(-50vw);
+		opacity: 0;
+	}
+	10% {
+		opacity: 1;
+	}
+	90% {
+		transform: translateX(10%);
+		opacity: 1;
+	}
+
+	100% {
+		transform: translateX(0);
+		opacity: 1;
+	}
+}
+
+.skillIcon {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	top: 50%;
+	position: absolute;
+	left: 50%;
+	z-index: 0;
+	transform: translate(-50%, -50%);
+	background-color: var(--accent-color);
+}
+
+.progressCircle {
+	width: 8rem;
+	height: 8rem;
+	--progress: 0.26;
+	background: conic-gradient(
+		var(--first-accent-color) calc(var(--progress) * 360deg),
+		var(--secondary-background-color) calc(var(--progress) * 360deg)
+	);
+	border-radius: 50%;
+	transition: all 0.5s ease-in-out;
+	display: grid;
+	place-items: center;
+	filter: drop-shadow(0.5rem 0.5rem 1rem rgba(0, 0, 0, 0.5));
+	animation: animateCircle 1s ease-in-out infinite;
+}
+
+.skills:nth-child(even) .progressCircle {
+	background: conic-gradient(
+		var(--second-accent-color) calc(var(--progress) * 360deg),
+		var(--secondary-background-color) calc(var(--progress) * 360deg)
+	);
+}
+
+.skills:nth-child(odd) .progressCircle {
+	background: conic-gradient(
+		var(--first-accent-color) calc(var(--progress) * 360deg),
+		var(--secondary-background-color) calc(var(--progress) * 360deg)
+	);
+}
+
+.progressCircleInner {
+	width: 85%;
+	height: 85%;
+	--accentColor: var(--main-background-color);
+	border-radius: 50%;
+	display: grid;
+	place-items: center;
+	position: relative;
+	overflow: hidden;
+	background-color: var(--accentColor);
+}
+
+.skillName {
+	font-size: 1.3rem;
+	font-weight: 800;
+	color: var(--main-text-color);
+	position: relative;
+	z-index: 10;
+	width: 100%;
+	height: 100%;
+	background: var(--main-glassy-background-color);
+	backdrop-filter: blur(10px);
+	-webkit-backdrop-filter: blur(10px);
+	z-index: 10;
+	display: grid;
+	place-items: center;
+	pointer-events: none;
+	border-radius: 50%;
+	text-shadow: 0.5rem 0.5rem 1rem var(--main-text-shadow-color);
+}
+
+.skillName * {
+	padding: 5rem;
+}

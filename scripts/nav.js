@@ -11,7 +11,14 @@ $(window).scroll(function () {
 	// If scrolled 100 px add hidden class to $("nav")
 	if ($(window).scrollTop() > 100) {
 		navElement.addClass("scrolled");
+		$("body").addClass("scrolled");
 	} else {
 		navElement.removeClass("scrolled");
+		$("body").removeClass("scrolled");
 	}
+});
+
+// Goes through each nav button and adds an index css variable
+$(".navButton").each(function (index) {
+	$(this).css("--index", index);
 });

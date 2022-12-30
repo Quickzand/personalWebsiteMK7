@@ -187,8 +187,17 @@ for (var i = 0; i < programmingLanguages.length; i++) {
 	var skill = programmingLanguages[i];
 	var skillContainer = skillBuilder(skill);
 	//  Adds a css variable animation-delay to the skill container
-	skillContainer.css("--animation-delay", i * 0.1 + "s");
-	skillContainer.addClass("animateIn");
+	skillContainer.css("--animation-delay", i * 0.15 + "s");
 	$("#programmingLanguages").append(skillContainer);
 	count++;
 }
+
+// Upon entering #programmingLanguages section, animate in the skills
+$("#programmingLanguages").waypoint(function () {
+	$(".skillContainer").each(function (i) {
+		var skillContainer = $(this);
+		setTimeout(function () {
+			skillContainer.addClass("animateIn");
+		}, i * 100);
+	});
+});

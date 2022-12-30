@@ -5,12 +5,17 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	background-image: var(--main-looping-gradient);
+	background-color: var(--main-background-color);
+	background-position: absolute;
+	background-size: cover;
+
+	box-shadow: inset 0 0 100rem 10rem var(--main-background-color);
 }
 
 .skillsContainer {
 	position: sticky;
 	top: 0;
-	z-index: 1000;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
@@ -68,7 +73,7 @@
 		transform: translateX(-50vw);
 		opacity: 0;
 	}
-	10% {
+	50% {
 		opacity: 1;
 	}
 	90% {
@@ -99,6 +104,8 @@
 	height: 8rem;
 	--progress: 0.26;
 	background: conic-gradient(
+		var(--first-accent-color) 0,
+		var(--second-accent-color) calc(calc(var(--progress) * 360deg) / 2),
 		var(--first-accent-color) calc(var(--progress) * 360deg),
 		var(--secondary-background-color) calc(var(--progress) * 360deg)
 	);

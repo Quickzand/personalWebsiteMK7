@@ -1,5 +1,6 @@
 #about {
 	padding-bottom: 10rem;
+	padding-top: 10rem;
 	box-shadow: 0rem 1rem 2rem 0.5rem var(--main-background-color),
 		0rem -1rem 2rem 0.5rem var(--main-background-color);
 }
@@ -9,7 +10,6 @@
 	width: 100vw;
 	text-align: center;
 	font-size: 2.5rem;
-	padding-top: 5rem;
 	margin-bottom: 5rem;
 	display: grid;
 	place-items: center;
@@ -20,7 +20,18 @@
 }
 
 #aboutHeaderText {
-	width: 70%;
+	position: absolute;
+	top: 3rem;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 80%;
+	height: 100%;
+}
+
+#aboutHeaderPlaceholderText {
+	opacity: 0;
+	width: 80%;
+	margin-top: 3rem;
 }
 
 @keyframes blink {
@@ -58,19 +69,22 @@
 		calc(calc(var(--xOffset) * 1px) * var(--xOffsetMultiplier))
 	);
 	cursor: pointer;
-	transition: filter 0.25s, box-shadow 0.25s, transform 0.05s;
+	transition: filter 0.25s, box-shadow 0.25s, transform 0s ease-in-out;
 	transition-timing-function: ease-in-out;
 	box-shadow: 0 0 1rem 0.5rem rgba(0, 0, 0, 0.5);
-	will-change: transform, filter, box-shadow;
+	will-change: transform, box-shadow;
 }
 
 #education .aboutCard {
 	--xOffsetMultiplier: -1;
 }
 
-.aboutCard:hover {
-	filter: brightness(1.25);
-	box-shadow: 0 0 1.5rem 0.5rem rgba(0, 0, 0, 0.75);
+.aboutCard:hover .aboutCardContent {
+	opacity: 0;
+}
+
+.aboutCard:hover .aboutCardBG {
+	filter: blur(10px);
 }
 
 .aboutCardBG {
@@ -83,6 +97,7 @@
 	background-color: var(--main-font-color);
 	object-fit: cover;
 	z-index: 0;
+	transition: filter 0.25s ease-in-out;
 }
 
 .aboutCardContent {
@@ -92,6 +107,42 @@
 	top: 0;
 	left: 0;
 	z-index: 1;
+	transition: opacity 0.25s ease-in-out;
+}
+
+.aboutCardDescription {
+	width: calc(100% - 2rem);
+	height: calc(100% - 2rem);
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 2;
+	display: grid;
+	place-items: center;
+	opacity: 0;
+	padding: 1rem;
+	transition: opacity 0.25s ease-in-out;
+	font-family: var(--body-font);
+	font-size: 1.5rem;
+	font-weight: 500;
+	background-color: rgba(0, 0, 0, 0.5);
+	text-align: center;
+}
+
+.aboutCard:hover .aboutCardDescription {
+	opacity: 1;
+}
+
+.aboutCard:hover::after {
+	content: ">";
+	position: absolute;
+	bottom: 10px;
+	right: 10px;
+	font-size: 3rem;
+	line-height: 1;
+	color: var(--main-font-color);
+	font-weight: 500;
+	font-family: var(--header-font);
 }
 
 .aboutCardHeader {
@@ -167,4 +218,203 @@
 
 #education .aboutCardsContainer {
 	flex-direction: row-reverse;
+}
+
+#aboutPopover {
+	position: fixed;
+	width: 100vw;
+	height: calc(100vh - var(--mobile-top-safe-area));
+	padding-top: var(--mobile-top-safe-area);
+	overflow: scroll;
+	aspect-ratio: 1;
+	bottom: 0;
+	left: 0;
+	z-index: 1000000;
+	background-color: var(--main-background-color);
+	transition: transform 0.5s ease-in-out, opacity 0.5s ease-in;
+	display: flex;
+	flex-direction: column;
+	will-change: transform, opacity;
+}
+
+#aboutPopover:not(.open):not(.peek) {
+	transform: translate(0%, 110%);
+	opacity: 0;
+}
+
+#aboutPopover:not(.open).peek {
+	top: 100%;
+	transform: translate(-50%, 90%);
+}
+
+#aboutPopoverBackground {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	position: absolute;
+	top: 0;
+	left: 0;
+	filter: blur(30px) brightness(0.4);
+	z-index: -1;
+}
+
+#aboutPopoverTitle {
+	font-size: 5rem;
+	margin-top: 5rem;
+	font-family: var(--header-font);
+	display: flex;
+	flex-direction: row;
+
+	align-items: center;
+}
+
+#aboutPopoverTitleIcon {
+	height: 5.5rem;
+	aspect-ratio: 1;
+	margin-left: 4.5rem;
+	margin-right: 1rem;
+}
+
+#aboutPopoverSubtitle {
+	font-size: 3rem;
+	font-weight: 200;
+	margin-left: 4.5rem;
+}
+
+#aboutPopoverContent {
+	height: 100%;
+}
+
+#aboutPopoverClose {
+	height: 5rem;
+	width: 100vw;
+	position: fixed;
+	bottom: 0;
+	cursor: pointer;
+	padding-bottom: 1rem;
+}
+
+#aboutPopoverClose svg {
+	stroke: var(--main-font-color);
+	fill: transparent;
+	width: 100%;
+	height: 100%;
+	pointer-events: none;
+	transition: all 0.5s ease-in-out;
+}
+
+#aboutPopoverClose:hover svg {
+	transform: translateY(-50%);
+}
+
+#aboutPopoverCards {
+	width: calc(100vw - 10rem);
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+}
+.aboutPopoverCard {
+	white-space: normal;
+	max-width: 20rem;
+	max-height: 20rem;
+	padding: 1rem;
+	border-radius: 1rem;
+	font-size: 2rem;
+	margin-left: 2rem;
+	margin-right: 2rem;
+	margin-top: 2rem;
+	background-color: var(--main-glassy-background-color);
+	box-shadow: 0 0 1rem rgba(0, 0, 0, 0.5);
+	opacity: 0;
+	animation: aboutPopoverCardOpenAnimation 0.75s ease-in-out
+		calc(var(--index) * 0.05s) 1 forwards;
+}
+
+#aboutPopover:not(.open) .aboutPopoverCard {
+	animation: aboutPopoverCardCloseAnimation 0.75s ease-in-out
+		calc(var(--index) * 0.05s) 1 forwards;
+}
+
+@keyframes aboutPopoverCardOpenAnimation {
+	from {
+		opacity: 0;
+		transform: translateX(100%);
+	}
+
+	to {
+		opacity: 1;
+		transform: translateX(0%);
+	}
+}
+
+@keyframes aboutPopoverCardCloseAnimation {
+	from {
+		opacity: 1;
+		transform: translateX(0%);
+	}
+	to {
+		opacity: 0;
+		transform: translateX(100%);
+	}
+}
+
+#aboutPopoverTags {
+	width: 100vw;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.aboutPopoverTag {
+	background-color: var(--main-glassy-background-color);
+	margin-left: 2rem;
+	width: 10rem;
+	padding: 2rem;
+	margin-top: 2rem;
+	backdrop-filter: blur(1rem);
+	-webkit-backdrop-filter: blur(1rem);
+	border-radius: 1rem;
+	box-shadow: 0 0 1rem rgba(0, 0, 0, 0.5);
+	opacity: 0;
+	animation: aboutPopoverTagOpenAnimation 0.75s ease-in-out
+		calc(var(--index) * 0.05s) 1 forwards;
+}
+
+#aboutPopover:not(.open) .aboutPopoverTag {
+	animation: aboutPopoverTagCloseAnimation 0.75s ease-in-out
+		calc(var(--index) * 0.05s) 1 forwards;
+}
+
+.aboutPopoverTagImg {
+	width: 100%;
+	aspect-ratio: 1;
+	object-fit: contain;
+}
+
+.aboutPopoverTagLabel {
+	font-size: 2rem;
+	margin-top: 1rem;
+	text-align: center;
+}
+
+@keyframes aboutPopoverTagOpenAnimation {
+	from {
+		opacity: 0;
+		transform: translateX(-100%);
+	}
+
+	to {
+		opacity: 1;
+		transform: translateX(0%);
+	}
+}
+
+@keyframes aboutPopoverTagCloseAnimation {
+	from {
+		opacity: 1;
+		transform: translateX(0%);
+	}
+	to {
+		opacity: 0;
+		transform: translateX(-100%);
+	}
 }

@@ -3,30 +3,43 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<!-- <meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+			  <meta name="apple-mobile-web-app-capable" content="yes"></meta> -->
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"></meta>
 		<script src="scripts/jquery.js"></script>
+		<script src="scripts/jquery.waypoints.min.js"></script>
+		<script src="scripts/main.js"></script>
 		<script src="scripts/header.js" async defer></script>
 		<script src="scripts/nav.js" async defer></script>
 		<script src="scripts/about.js" async defer></script>
 		<script src="scripts/skills.js" async defer></script>
+		<script src="scripts/socials.js" async defer></script>
 
 		<title>Matthew Sand</title>
 		<link rel="stylesheet" href="styles/master.css" />
 		<link rel="stylesheet" href="styles/header.css" />
 		<link rel="stylesheet" href="styles/about.css" />
 		<link rel="stylesheet" href="styles/skills.css" />
+
+		<!-- adds the icon -->
+		<link rel="icon" href="images/icon.svg" />
 	</head>
 	<body>
-		<div id="gridGradient"></div>
-		<div id="gridContainer"></div>
 		<header>
+			<div id="gridGradient"></div>
+			<div id="gridContainer"></div>
 			<div id="backgroundFadeEffect"></div>
 			<div id="headerText">
-				<div id="topHeaderText">Hi, I'm</div>
-				<div id="name" class="shadowEffect" data-text="Matthew">
+				<div id="name" class="shadowEffect" data-text="Matthew Sand">
 					<span>M</span><span>a</span><span>t</span><span>t</span><span>h</span
-					><span>e</span><span>w</span>
+					><span>e</span><span>w</span><span class="space"> </span><span>S</span
+					><span>a</span><span>n</span><span>d</span>
 				</div>
+				<!-- <div id="subtitle">
+					Fullstack Web Developer, iOS Developer, and Computer Science Student
+				</div> -->
 			</div>
 		</header>
 
@@ -43,14 +56,34 @@
 						d="M 90.966667 100.5 L 9.3 100.5 C 5.224599 100.5 -1.69049 103.859276 -3 102 C -4.028901 100.539139 0.137003 94.05719 0.133333 92.360466 C 0.140124 90.77845 0.421521 89.207832 0.966667 87.709305 C 7.194159 71.127899 26.834154 59.027134 50.133335 59.027134 C 73.432487 59.027134 93.070854 71.127899 99.300003 87.709305 C 99.845139 89.207832 100.126564 90.77845 100.133331 92.360466 C 100.071457 108.807259 104.401443 104.364639 90.966667 100.5 Z M 50.133335 48.562016 C 37.01667 48.562016 26.383333 37.803101 26.383333 24.531006 C 26.383333 11.258911 37.01667 0.5 50.133335 0.5 C 63.249992 0.5 73.883331 11.258911 73.883331 24.531006 C 73.883331 37.803101 63.249992 48.562016 50.133335 48.562016 Z" />
 				</svg>
 			</div>
+			<div class="mobileNavButton">
+				<svg
+					viewBox="0 0 512 512"
+					xmlns="http://www.w3.org/2000/svg"
+					xmlns:xlink="http://www.w3.org/1999/xlink">
+					<path
+						id="Book"
+						fill-rule="evenodd"
+						stroke="none"
+						d="M 494.139526 460.404907 C 489.826538 460.52832 485.608765 459.122437 482.232544 456.435913 C 426.350281 407.700562 343.572418 406.028198 285.767456 452.466919 C 282.760651 454.721863 278.738129 455.084656 275.376465 453.403809 C 272.015015 451.723083 269.891479 448.287292 269.891479 444.528931 L 269.891479 117.087067 C 269.891479 107.206238 276.321228 100.744751 279.813965 97.242096 C 307.140503 69.824341 345.064209 51.598694 386.976746 51.598694 C 431.340607 51.734955 473.412781 71.320221 502.077515 105.180084 C 505.609985 109.325684 512 117.136719 512 127.009552 L 512 442.544434 C 512 452.408508 504.003632 460.404907 494.139526 460.404907 Z M 232.18605 454.451416 C 230.038391 454.45575 227.948044 453.758942 226.232559 452.466919 C 168.427567 406.028198 85.649712 407.700562 29.767443 456.435913 C 26.389898 459.120117 22.173086 460.525757 17.860466 460.404907 C 7.996367 460.404907 0 452.408508 0 442.544434 L 0 127.009552 C 0 117.136719 6.384084 109.325684 9.922481 105.180084 C 38.58733 71.320221 80.659523 51.734955 125.023254 51.598694 C 166.933868 51.598694 204.859497 69.824341 232.18605 97.242096 C 235.678772 100.744751 242.108521 107.206238 242.108521 117.087067 L 242.108521 444.528931 C 242.108521 450.008942 237.666183 454.451416 232.18605 454.451416 Z" />
+				</svg>
+			</div>
+			<div class="mobileNavButton">
+				<svg
+					viewBox="0 0 512 512"
+					xmlns="http://www.w3.org/2000/svg"
+					xmlns:xlink="http://www.w3.org/1999/xlink">
+					<path
+						id="path1"
+						fill-rule="evenodd"
+						stroke="none"
+						d="M 512 255.2323 L 428.128082 435.938171 L 379.329865 422.213684 L 458.626953 255.2323 L 379.329865 89.394623 L 428.128082 75.670105 Z M 317.950867 109.218872 L 240.178711 381.421417 L 190.618027 381.421417 L 269.152649 109.218872 Z M 132.670135 422.213684 L 83.871925 435.938171 L -0 255.2323 L 83.871925 75.670105 L 132.670135 89.394623 L 53.373047 255.2323 Z" />
+				</svg>
+			</div>
 		</div>
 
 		<nav>
-			<div
-				class="navButton selected"
-				style="animation-delay: 0"
-				data-navTo="about"
-				id="aboutNav">
+			<div class="navButton selected" data-navTo="about" id="aboutNav">
 				<svg
 					viewBox="0 0 100 100"
 					xmlns="http://www.w3.org/2000/svg"
@@ -64,11 +97,7 @@
 				<span class="navButtonText">About</span>
 			</div>
 
-			<div
-				class="navButton"
-				style="animation-delay: 0.3s"
-				data-navTo="skills"
-				id="skillsNav">
+			<div class="navButton" data-navTo="skills" id="skillsNav">
 				<svg
 					viewBox="0 0 512 512"
 					xmlns="http://www.w3.org/2000/svg"
@@ -81,11 +110,7 @@
 				</svg>
 				<span class="navButtonText">Skills</span>
 			</div>
-			<div
-				class="navButton"
-				style="animation-delay: 0.6s"
-				data-navTo="projects"
-				id="projectsNav">
+			<div class="navButton" data-navTo="projects" id="projectsNav">
 				<svg
 					viewBox="0 0 512 512"
 					xmlns="http://www.w3.org/2000/svg"
@@ -99,9 +124,69 @@
 				<span class="navButtonText">Projects</span>
 			</div>
 		</nav>
-
+		<div id="socials">
+			<svg
+				id="socialsIcon"
+				xmlns="http://www.w3.org/2000/svg"
+				viewBox="0 0 100 100"
+				style="enable-background: new 0 0 100 100"
+				xml:space="preserve">
+				<g>
+					<g>
+						<path
+							d="M70,57c-4.8,0-8.9,3.4-9.8,8H47c-0.6,0-1,0.5-1,1.1c0,0.3,0,0.6,0,0.9c0,1-0.1,1.9-0.3,2.8
+			c-0.1,0.6,0.4,1.2,1,1.2h14.1c1.5,3.5,5.1,6,9.2,6c5.5,0,10-4.5,10-10C80,61.5,75.5,57,70,57z" />
+					</g>
+					<g>
+						<path
+							d="M43.3,45.5c-1.2-0.5-2.3-1.2-3.3-2c-0.5-0.4-1.2-0.2-1.5,0.3l-7.1,13.3C31,57,30.5,57,30,57
+			c-5.5,0-10,4.5-10,10c0,5.5,4.5,10,10,10c5.5,0,10-4.5,10-10c0-2.9-1.2-5.4-3.1-7.3l6.9-12.8C44,46.4,43.8,45.8,43.3,45.5z" />
+					</g>
+					<g>
+						<path
+							d="M50,41c1,0,1.9-0.1,2.8-0.4l6.9,12.7c0.3,0.5,0.9,0.7,1.4,0.4c1.1-0.7,2.2-1.3,3.4-1.7
+			c0.6-0.2,0.8-0.9,0.5-1.4l-7.2-13.4c1.3-1.7,2.2-3.9,2.2-6.2c0-5.5-4.5-10-10-10s-10,4.5-10,10C40,36.5,44.5,41,50,41z" />
+					</g>
+				</g>
+			</svg>
+		</div>
 		<div class="bodySection" id="about">
+			<div id="aboutPopover">
+				<div id="aboutPopoverContent">
+					<img
+						src="images/spheres.jpg"
+						alt="Seattle"
+						id="aboutPopoverBackground" />
+					<div id="aboutPopoverTitle">
+						<img
+							src="images/amazon.png"
+							alt="Amazon Logo"
+							id="aboutPopoverTitleIcon" />
+						<span id="aboutPopoverTitleText"></span>
+					</div>
+					<div id="aboutPopoverSubtitle">
+						Software Development Engineer Intern
+					</div>
+
+					<div id="aboutPopoverCards"></div>
+					<div id="aboutPopoverTags"></div>
+				</div>
+				<div id="aboutPopoverClose">
+					<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+						<polyline
+							stroke-width="2"
+							points="7.086 3.174 17.086 13.174 7.086 23.174"
+							transform="scale(1 -1) rotate(-89 -1.32 0)" />
+					</svg>
+				</div>
+			</div>
+
 			<div id="aboutHeader">
+				<div id="aboutHeaderPlaceholderText">
+					My goal as a software engineer is to create code with perspective and
+					purpose - and to ultimately make the world a more human friendly
+					place. Here's how I've been working towards that goal:
+				</div>
 				<div id="aboutHeaderText">
 					<span id="blinker"></span>
 				</div>
@@ -112,79 +197,16 @@
 						Experience
 					</div>
 				</div>
-				<div class="aboutCardsContainer">
-					<div class="aboutCard">
-						<div class="aboutCardContent">
-							<img
-								src="images/sightplan.png"
-								alt="SightPlan logo"
-								class="aboutCardIcon" />
-							<div class="aboutCardHeader">
-								SightPlan
-								<div class="aboutCardSubtitle">October 2022 - Present</div>
-							</div>
-						</div>
-						<img
-							src="images/downtownOrlando.jpg"
-							alt="Downtown Orlando"
-							class="aboutCardBG" />
-					</div>
-					<div class="aboutCard">
-						<div class="aboutCardContent">
-							<img
-								src="images/amazon.png"
-								alt="SightPlan logo"
-								class="aboutCardIcon" />
-							<div class="aboutCardHeader">
-								Amazon
-								<div class="aboutCardSubtitle">June 2022 - August 2022</div>
-							</div>
-						</div>
-						<img
-							src="images/spheres.jpg"
-							alt="Downtown Orlando"
-							class="aboutCardBG" />
-					</div>
-				</div>
+				<div class="aboutCardsContainer"></div>
 			</div>
 			<div id="education" class="aboutSection">
 				<div class="aboutSectionHeaderWrapper">
 					<div data-text="Education" class="shadowEffect header">Education</div>
 				</div>
-				<div class="aboutCardsContainer">
-					<div class="aboutCard">
-						<div class="aboutCardContent">
-							<img src="images/ucf.png" alt="UCF logo" class="aboutCardIcon" />
-							<div class="aboutCardHeader">
-								University of Central Florida
-								<div class="aboutCardSubtitle">August 2021 - Present</div>
-							</div>
-						</div>
-						<img
-							src="images/reflectionPond.jpeg"
-							alt="UCF Reflection Pond"
-							class="aboutCardBG" />
-					</div>
-					<div class="aboutCard">
-						<div class="aboutCardContent">
-							<img
-								src="images/suncoast.png"
-								alt="Suncoast logo"
-								class="aboutCardIcon" />
-							<div class="aboutCardHeader">
-								Suncoast High School
-								<div class="aboutCardSubtitle">August 2017 - June 2021</div>
-							</div>
-						</div>
-						<img
-							src="images/suncoastCampus.jpeg"
-							alt="Suncoast Campus"
-							class="aboutCardBG" />
-					</div>
-				</div>
+				<div class="aboutCardsContainer"></div>
 			</div>
 		</div>
-		<div id="skills">
+		<!-- <div id="skills">
 			<div id="skillsBG"></div>
 			<div class="skillsContainer">
 				<div
@@ -194,7 +216,7 @@
 				</div>
 				<div class="skillElementsContainer" id="programmingLanguages"></div>
 			</div>
-		</div>
+		</div> -->
 	</body>
 	<script>
 		document.write(

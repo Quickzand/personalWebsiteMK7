@@ -1,167 +1,166 @@
-#skills {
-	position: relative;
-	min-height: 300vh;
-	width: 100vw;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	background-image: var(--main-looping-gradient);
-	background-color: var(--main-background-color);
-	background-position: absolute;
-	background-size: cover;
-
-	box-shadow: inset 0 0 100rem 10rem var(--main-background-color);
-}
-
-.skillsContainer {
-	position: sticky;
-	top: 0;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	height: 100vh;
-	display: inline-flex;
-	width: clamp(20rem, 50vw, 50rem);
-}
-
-.skillsContainerHeader {
-	font-size: 4rem;
-	font-family: var(--title-font);
-	text-align: left;
-	margin-left: 2rem;
-}
-
-.skillsContainerHeader::after {
-	font-family: var(--title-font) !important;
-}
-
-.skillContainer {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	align-content: center;
-	padding: 0;
-	filter: drop-shadow(0.5rem 0.5rem 1rem rgba(0, 0, 0, 0.5));
-	/* Adds 1 rem of spacing */
-	margin: 1rem;
-	opacity: 0;
-	will-change: transform, opacity;
-}
-
-.skillContainer.animateIn {
-	animation-name: slideInFromLeft;
-	animation-duration: 1.5s;
-	animation-timing-function: ease-in-out;
-	animation-fill-mode: forwards;
-	animation-delay: var(--animation-delay);
+.skillsHeader {
+	font-size: 2.5rem;
+	font-weight: 800;
+	color: var(--main-text-color);
+	text-shadow: 0.5rem 0.5rem 1rem var(--main-text-shadow-color);
+	line-height: 1;
+	text-align: center;
+	margin-bottom: 50px;
 	opacity: 0;
 }
 
-.skillElementsContainer {
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
-	align-items: center;
-	align-content: center;
-	width: 100%;
-	flex-wrap: wrap;
+.skillsHeader.animateIn {
+	animation: animateSkillsHeader 1s ease-in-out forwards;
 }
 
-@keyframes slideInFromLeft {
-	0% {
+@keyframes animateSkillsHeader {
+	from {
 		transform: translateX(-50vw);
 		opacity: 0;
 	}
-	50% {
-		opacity: 1;
-	}
-	90% {
-		transform: translateX(10%);
-		opacity: 1;
-	}
 
-	100% {
+	to {
 		transform: translateX(0);
 		opacity: 1;
 	}
 }
 
-.skillIcon {
+.skillsContainer {
 	width: 100%;
-	height: 100%;
+	margin-top: 6rem;
+}
+
+.skillElementsContainer {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 30px;
+	flex-wrap: wrap;
+	width: 100%;
+}
+
+.skillHeader {
+	font-size: 1.5rem;
+	font-weight: normal;
+	color: var(--main-text-color);
+	text-shadow: 0.5rem 0.5rem 1rem var(--main-text-shadow-color);
+	line-height: 1;
+	margin-bottom: 1rem;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	opacity: 0;
+	transform: translateY(100%);
+	transition: all 1s calc(calc(var(--index) * 0.1s) + 0.5s) ease-in-out;
+}
+
+.skillContainer.animateIn .skillHeader {
+	opacity: 1;
+	transform: translateY(0);
+}
+
+.skillIcon {
+	width: 1.5rem;
+	height: 1.5rem;
+	aspect-ratio: 1;
 	object-fit: cover;
 	top: 50%;
-	position: absolute;
-	left: 50%;
-	z-index: 0;
-	transform: translate(-50%, -50%);
-	background-color: var(--accent-color);
 }
 
-.progressCircle {
-	width: 8rem;
-	height: 8rem;
-	--progress: 0.26;
-	background: conic-gradient(
-		var(--first-accent-color) 0,
-		var(--second-accent-color) calc(calc(var(--progress) * 360deg) / 2),
-		var(--first-accent-color) calc(var(--progress) * 360deg),
-		var(--secondary-background-color) calc(var(--progress) * 360deg)
-	);
-	border-radius: 50%;
-	transition: all 0.5s ease-in-out;
-	display: grid;
-	place-items: center;
-	filter: drop-shadow(0.5rem 0.5rem 1rem rgba(0, 0, 0, 0.5));
-	animation: animateCircle 1s ease-in-out infinite;
-}
-
-.skills:nth-child(even) .progressCircle {
-	background: conic-gradient(
-		var(--second-accent-color) calc(var(--progress) * 360deg),
-		var(--secondary-background-color) calc(var(--progress) * 360deg)
-	);
-}
-
-.skills:nth-child(odd) .progressCircle {
-	background: conic-gradient(
-		var(--first-accent-color) calc(var(--progress) * 360deg),
-		var(--secondary-background-color) calc(var(--progress) * 360deg)
-	);
-}
-
-.progressCircleInner {
-	width: 85%;
-	height: 85%;
-	--accentColor: var(--main-background-color);
-	border-radius: 50%;
-	display: grid;
-	place-items: center;
-	position: relative;
+.skillBar {
+	width: 20rem;
+	line-height: 0;
+	height: 1.5rem;
+	background-color: var(--secondary-background-color);
+	border-radius: 1.5rem;
 	overflow: hidden;
-	background-color: var(--accentColor);
+	position: relative;
+	z-index: -1;
+	opacity: 0;
+	transform: translateY(-100%);
+	transition: all 1s calc(var(--index) * 0.1s) ease-in-out;
 }
 
-.skillName {
-	font-size: 1.3rem;
-	font-weight: 800;
-	color: var(--main-text-color);
-	position: relative;
-	z-index: 10;
+.skillContainer.animateIn .skillBar {
+	opacity: 1;
+	transform: translateY(0);
+}
+
+.skillBar::after {
+	content: attr(data-skill-level);
 	width: 100%;
 	height: 100%;
-	background: var(--main-glassy-background-color);
-	backdrop-filter: blur(10px);
-	-webkit-backdrop-filter: blur(10px);
-	z-index: 10;
 	display: grid;
 	place-items: center;
-	pointer-events: none;
-	border-radius: 50%;
-	text-shadow: 0.5rem 0.5rem 1rem var(--main-text-shadow-color);
+	text-shadow: 0rem 0rem 7px rgba(0, 0, 0, 0.5);
+	font-size: 1.5rem;
+	font-family: var(--header-font);
+	color: var(--main-text-color);
+	-webkit-text-stroke-width: 1px;
+	-webkit-text-stroke-color: rgba(0, 0, 0, 0.5);
+	font-weight: bold;
 }
 
-.skillName * {
-	padding: 5rem;
+.skillBar::before {
+	content: "";
+	width: var(--skill-level);
+	height: 100%;
+	background-color: var(--accent-color);
+
+	background-image: linear-gradient(
+		to right,
+		var(--first-gradient),
+		var(--second-gradient),
+		var(--first-gradient)
+	);
+	background-size: 200% 100%;
+	background-position: 0 0;
+	animation: skillBarGradientAnimation 4s calc(var(--index) * -0.3s) linear
+		infinite;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: -1;
+	transform-origin: 0% 50%;
+	transform: scaleX(0);
+	transition: transform 1s calc(calc(var(--index) * 0.1s) + 2s) ease-in-out;
+}
+
+.skillContainer.animateIn .skillBar::before {
+	transform: scaleX(1);
+}
+
+@keyframes animateBarFill {
+	0% {
+		transform: scaleX(0);
+	}
+	100% {
+		transform: scaleX(1);
+	}
+}
+
+@keyframes skillBarGradientAnimation {
+	0% {
+		background-position: 0 0;
+	}
+	100% {
+		background-position: 200% 0;
+	}
+}
+
+.skillContainer {
+	animation: floatSkill 3s calc(var(--index) * -0.3s) ease-in-out alternate
+		infinite;
+}
+
+@keyframes floatSkill {
+	0% {
+		transform: translateY(0);
+	}
+	50% {
+		transform: translateY(-5px);
+	}
+	100% {
+		transform: translateY(0);
+	}
 }

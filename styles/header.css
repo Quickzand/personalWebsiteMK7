@@ -45,7 +45,7 @@ header {
 	pointer-events: none;
 	background-image: var(--main-gradient);
 	background-position: 0 0;
-	background-size: 100% 100%;
+	background-size: 200% 100%;
 	animation: loopBG 5s ease infinite;
 }
 @keyframes fadeIn {
@@ -55,6 +55,15 @@ header {
 
 	to {
 		opacity: 1;
+	}
+}
+
+@keyframes loopBg {
+	0% {
+		background-position: 0 0;
+	}
+	100% {
+		background-position: 100% 0;
 	}
 }
 
@@ -117,7 +126,7 @@ header {
 }
 
 #name span.space {
-	width: 2rem;
+	width: 1.5rem;
 }
 
 #name span:hover {
@@ -157,6 +166,7 @@ header {
 #name:after {
 	opacity: 0;
 	animation: blurInToFocusLetters 2s ease-in forwards 6s;
+	transform: scaleX(1.036) scaleY(1.02) translateY(0%);
 }
 
 #headerText {

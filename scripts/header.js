@@ -32,7 +32,7 @@ class Cell {
 	}
 
 	draw() {
-		gridCTX.fillStyle = "rgba(25, 25, 25, " + this.opacity + ")";
+		gridCTX.fillStyle = "rgba(18, 18, 18, " + this.opacity + ")";
 		// Draws cell taking into account the cell gap
 		gridCTX.fillRect(
 			this.x + (cellGap + this.additionalInset) / 2,
@@ -51,7 +51,7 @@ class Cell {
 			mouse.y > this.y &&
 			mouse.y < this.y + cellSize
 		) {
-			this.additionalInset = 2;
+			this.additionalInset = 3;
 			this.mouseOver = true;
 		}
 
@@ -111,6 +111,32 @@ class Cell {
 			}, duration);
 		}, delay);
 	}
+
+	// Shrinks cell slowly and then quickly expands it
+	snapShrink(duration) {
+		if (this.currentlyAnimating) return;
+		this.currentlyAnimating = true;
+		duration = duration ? duration : 0.5;
+		var shrinking = true;
+		var insetTo = 13;
+		// Animate the opacity of the cell using no libraries
+		var shrinkInterval = setInterval(() => {
+			if (this.additionalInset >= insetTo) {
+				shrinking = false;
+			}
+			if (shrinking) {
+				this.additionalInset += 1;
+			}
+			if (!shrinking) {
+				this.additionalInset -= 5;
+			}
+			if (this.additionalInset <= 0) {
+				this.additionalInset = 0;
+				this.currentlyAnimating = false;
+				clearInterval(shrinkInterval);
+			}
+		}, 50);
+	}
 }
 
 // CANVAS STUFF
@@ -128,7 +154,7 @@ $(window).on("resize", function () {
 
 const cellSize = $(window).width() <= 750 ? 100 : 125;
 
-var cellGap = 2;
+var cellGap = 0.4;
 
 var colCount = Math.ceil($(window).width() / cellSize);
 var rowCount = Math.ceil($(window).height() / cellSize);
@@ -172,6 +198,14 @@ function animateRaindrop() {
 	}
 }
 
+function animateSnapShrink() {
+	// Picks a random row
+	var randomRow = Math.floor(Math.random() * cells.length);
+	// Picks a random cell in the row
+	var randomCell = Math.floor(Math.random() * cells[randomRow].length);
+	cells[randomRow][randomCell].snapShrink();
+}
+
 createCells(colCount, rowCount);
 
 // Run animateRaindrop every 1 seconds after 5 seconds
@@ -179,12 +213,20 @@ setTimeout(function () {
 	setInterval(animateRaindrop, 1500);
 }, 5000);
 
+// Runs animateSnapShrink every 1 seconds after 5 seconds
+setTimeout(function () {
+	setInterval(animateSnapShrink, 200);
+}, 5000);
+
 drawFrame();
 
 function drawFrame() {
-	gridCTX.clearRect(0, 0, gridCanvas.width(), gridCanvas.height());
-	for (var i = 0; i < cells.length; i++) {
-		for (var j = 0; j < cells[i].length; j++) cells[i][j].update();
+	// Only preform if canvas on screen
+	if (gridCanvas.isInViewport()) {
+		gridCTX.clearRect(0, 0, gridCanvas.width(), gridCanvas.height());
+		for (var i = 0; i < cells.length; i++) {
+			for (var j = 0; j < cells[i].length; j++) cells[i][j].update();
+		}
 	}
 	requestAnimationFrame(drawFrame);
 }

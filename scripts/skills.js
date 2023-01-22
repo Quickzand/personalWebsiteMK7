@@ -15,7 +15,7 @@ const programmingLanguages = [
 		name: "Javascript",
 		level: 1,
 		icon: "images/skills/javascript.png",
-		accentColor: "#e0d21e",
+		accentColor: "#ebba30",
 	},
 	{
 		name: "SQL",
@@ -37,7 +37,7 @@ const programmingLanguages = [
 	},
 	{
 		name: "Python",
-		level: 0.95,
+		level: 1,
 		icon: "images/skills/python.png",
 		accentColor: "#fddf55",
 	},
@@ -90,16 +90,19 @@ const technologies = [
 		name: "PWA",
 		level: 0.5,
 		icon: "images/skills/pwa.png",
+		accentColor: "#4a00c5",
 	},
 	{
 		name: "Web Sockets",
 		level: 0.45,
 		icon: "images/skills/websocket.png",
+		accentColor: "#ef4b07",
 	},
 	{
 		name: "AWS",
 		level: 0.85,
 		icon: "images/skills/aws.png",
+		accentColor: "#f7941e",
 	},
 ];
 
@@ -108,77 +111,160 @@ const profs = [
 		name: "MacOS",
 		level: 1,
 		icon: "images/skills/macos.png",
+		accentColor: "#1f93f4",
 	},
 	{
 		name: "Windows",
 		level: 0.9,
 		icon: "images/skills/windows.png",
+		accentColor: "#209ceb",
 	},
 	{
 		name: "Linux",
 		level: 0.8,
 		icon: "images/skills/linux.png",
+		accentColor: "#ed9a0a",
 	},
 	{
 		name: "Android",
 		level: 0.3,
 		icon: "images/skills/android.png",
+		accentColor: "#95bd2c",
 	},
 	{
 		name: "iOS",
 		level: 0.95,
 		icon: "images/skills/ios.png",
+		accentColor: "#1f93f4",
 	},
 	{
 		name: "Office Suite",
 		level: 0.95,
 		icon: "images/skills/office.png",
+		accentColor: "#e42407",
 	},
 	{
 		name: "Adobe Photoshop",
 		level: 0.95,
 		icon: "images/skills/photoshop.jpg",
+		accentColor: "#43bae7",
 	},
 	{
 		name: "Final Cut Pro X",
 		level: 0.95,
 		icon: "images/skills/finalcut.png",
+		accentColor: "#fa55ae",
 	},
 	{
 		name: "Slack",
 		level: 0.75,
 		icon: "images/skills/slack.png",
+		accentColor: "#4a154b",
 	},
 	{
 		name: "Unity",
 		level: 0.5,
 		icon: "images/skills/unity.svg",
+		accentColor: "#ff7149",
+	},
+	{
+		name: "Virtual Reality",
+		level: 0.85,
+		icon: "images/skills/vr.png",
+		accentColor: "#0c64f1",
 	},
 ];
 
 function skillBuilder(skill) {
 	var skillContainer = $("<div>").addClass("skillContainer");
-	var skillName = $("<h3>").text(skill.name).addClass("skillName");
-	var skillIcon = $("<img>").attr("src", skill.icon).addClass("skillIcon");
-	var progressCircle = $("<div>").addClass("progressCircle");
-	// Set the css variable --progress to the skill level
-	progressCircle.css("--progress", skill.level);
-	progressCircle.attr("data-tilt", "true");
-	progressCircle.attr("data-tilt-max", "40");
-	progressCircle.attr("data-tilt-reverse", "true");
-	progressCircle.attr("data-tilt-speed", "1000");
-	progressCircle.attr("data-tilt-reset", "false");
-	progressCircle.attr("data-tilt-scale", "1.2");
+	var skillName = $("<span>").text(skill.name).addClass("skillName");
+	var skillIcon = $("<img>")
+		.attr("src", skill.icon)
+		.attr("alt", skill.name + " icon")
+		.addClass("skillIcon");
+	var skillHeader = $("<div>").addClass("skillHeader");
 
-	var progressCircleInner = $("<div>").addClass("progressCircleInner");
-	progressCircleInner.append(skillIcon, skillName);
-	progressCircle.append(progressCircleInner);
-	skill.accentColor
-		? progressCircle.css("--accentColor", skill.accentColor)
-		: progressCircle.css("--accentColor", "var(--main-background-color");
+	skillHeader.append(skillName);
+	skillHeader.append(skillIcon);
 
-	skillContainer.append(progressCircle);
+	var skillBar = $("<div>").addClass("skillBar");
+	if (skill.accentColor) {
+		skillBar.css("--accent-color", skill.accentColor);
+		skillBar.css("--first-gradient", hexModifier(skill.accentColor, -25));
+		skillBar.css("--second-gradient", hexModifier(skill.accentColor, 65));
+	}
+
+	skillBar.css("--skill-level", skill.level * 100 + "%");
+
+	skillBar.attr("data-skill-level", skill.level * 100 + "%");
+
+	skillContainer.append(skillHeader);
+	skillContainer.append(skillBar);
+
 	return skillContainer;
+}
+
+function hexModifier(hex, x) {
+	// Takes out # from hex value
+	hex = hex.substring(1);
+
+	// Seperate hex value into r, g, b
+	var r = hex.substring(0, 2);
+	var g = hex.substring(2, 4);
+	var b = hex.substring(4, 6);
+
+	// Convert hex values to decimal
+	r = parseInt(r, 16);
+	g = parseInt(g, 16);
+	b = parseInt(b, 16);
+
+	// Add x to each decimal value
+	r += x;
+	g += x;
+	b += x;
+
+	// If any value is greater than 255, set it to 255
+	if (r > 255) {
+		r = 255;
+	}
+	if (g > 255) {
+		g = 255;
+	}
+	if (b > 255) {
+		b = 255;
+	}
+
+	// If any value is less than 0, set it to 0
+	if (r < 0) {
+		r = 0;
+	}
+	if (g < 0) {
+		g = 0;
+	}
+	if (b < 0) {
+		b = 0;
+	}
+
+	// Convert decimal values back to hex
+	r = r.toString(16);
+	g = g.toString(16);
+	b = b.toString(16);
+
+	// Add 0 to the front of each hex value if it is only 1 character long
+	if (r.length == 1) {
+		r = "0" + r;
+	}
+	if (g.length == 1) {
+		g = "0" + g;
+	}
+	if (b.length == 1) {
+		b = "0" + b;
+	}
+
+	// Combine r, g, b values back into hex
+	var hexValue = r + "" + g + "" + b;
+
+	return "#" + hexValue;
 }
 
 var count = 0;
@@ -193,7 +279,24 @@ for (var i = 0; i < programmingLanguages.length; i++) {
 }
 
 // Upon entering #programmingLanguages section, animate in the skills
-$("#programmingLanguages").waypoint(function () {
+$("#skillsWaypoint").waypoint(function () {
+	$(".skillsHeader").addClass("animateIn");
+	$(".skillContainer").each(function (i) {
+		var skillContainer = $(this);
+		skillContainer.addClass("animateIn");
+		skillContainer.css("--index", i);
+	});
+});
+
+for (var i = 0; i < technologies.length; i++) {
+	var skill = technologies[i];
+	var skillContainer = skillBuilder(skill);
+	skillContainer.css("--animation-delay", i * 0.15 + "s");
+	$("#technologies").append(skillContainer);
+	count++;
+}
+
+$("#technologies").waypoint(function () {
 	$(".skillContainer").each(function (i) {
 		var skillContainer = $(this);
 		setTimeout(function () {
@@ -201,3 +304,32 @@ $("#programmingLanguages").waypoint(function () {
 		}, i * 100);
 	});
 });
+
+for (var i = 0; i < profs.length; i++) {
+	var skill = profs[i];
+	var skillContainer = skillBuilder(skill);
+	skillContainer.css("--animation-delay", i * 0.15 + "s");
+	$("#proficiencies").append(skillContainer);
+	count++;
+}
+
+$("#proficiencies").waypoint(function () {
+	$(".skillContainer").each(function (i) {
+		var skillContainer = $(this);
+		setTimeout(function () {
+			skillContainer.addClass("animateIn");
+		}, i * 100);
+	});
+});
+
+function animateSkills() {
+	$(".skillContainer").removeClass("passiveAnimate");
+	// Wait 0.5 seconds before adding the class passiveAnimate
+	setTimeout(function () {
+		$(".skillContainer").addClass("passiveAnimate");
+	}, 500);
+}
+
+// Every 10 seconds add the class passiveAnimate to all skillContainers
+// This will cause the skills to animate
+setInterval(animateSkills, 10000);

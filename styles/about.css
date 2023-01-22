@@ -7,12 +7,13 @@
 
 #aboutHeader {
 	color: var(--main-font-color);
-	width: 100vw;
+	width: 100%;
 	text-align: center;
 	font-size: 2.5rem;
-	margin-bottom: 5rem;
+	margin-bottom: 0rem;
 	display: grid;
 	place-items: center;
+	line-height: 1.6;
 }
 
 #aboutHeader.animateOut {
@@ -23,9 +24,12 @@
 	position: absolute;
 	top: 3rem;
 	left: 50%;
+	font-size: 2.5rem;
 	transform: translateX(-50%);
 	width: 80%;
 	height: 100%;
+	line-height: 1.6;
+	text-align: start;
 }
 
 #aboutHeaderPlaceholderText {
@@ -56,8 +60,9 @@
 }
 
 .aboutCard {
-	width: 30rem;
+	width: 35vw;
 	aspect-ratio: 1.618033988749894;
+	max-height: 35vh;
 	position: relative;
 	overflow: hidden;
 	background-color: var(--outset-background-color);
@@ -69,10 +74,9 @@
 		calc(calc(var(--xOffset) * 1px) * var(--xOffsetMultiplier))
 	);
 	cursor: pointer;
-	transition: filter 0.25s, box-shadow 0.25s, transform 0s ease-in-out;
+	transition: filter 0.25s;
 	transition-timing-function: ease-in-out;
-	box-shadow: 0 0 1rem 0.5rem rgba(0, 0, 0, 0.5);
-	will-change: transform, box-shadow;
+	will-change: transform;
 }
 
 #education .aboutCard {
@@ -205,12 +209,11 @@
 } */
 
 .aboutSectionHeaderWrapper {
-	width: calc(100% - 12rem);
+	width: calc(100%);
 	display: flex;
 	flex-direction: row;
 	justify-content: start;
 	align-items: center;
-	margin-left: 5rem;
 }
 
 #education .aboutSectionHeaderWrapper {
@@ -271,6 +274,7 @@
 
 #aboutPopoverTitleIcon {
 	height: 5.5rem;
+	width: 5.5rem;
 	aspect-ratio: 1;
 	margin-left: 4.5rem;
 	margin-right: 1rem;
@@ -418,4 +422,227 @@
 		opacity: 0;
 		transform: translateX(-100%);
 	}
+}
+
+#events {
+	margin-top: 10rem;
+	width: 100%;
+	overflow: visible;
+}
+
+#eventsTimeline {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	overflow: visible;
+}
+
+#eventsTimelineBar {
+	position: absolute;
+	left: 50%;
+	top: 0;
+	height: 100%;
+	transform: translateX(-50%);
+	width: 10px;
+	background-color: var(--main-font-color);
+	z-index: -1;
+	opacity: 0;
+	box-shadow: 0 0 1rem rgba(0, 0, 0, 0.5);
+}
+
+#eventsTimelineBackground {
+	position: absolute;
+	left: 0%;
+	top: 0%;
+	height: 100%;
+	width: 100%;
+	/* background-image: linear-gradient(
+		to right,
+		var(--first-accent-color) 0%,
+		var(--second-accent-color) 100%
+	); */
+	z-index: -1;
+	opacity: 1;
+	filter: blur(50px);
+	/* animation: flickerBackground 5s steps(50, jump-both) infinite alternate; */
+}
+
+@keyframes flickerBackground {
+	0% {
+		opacity: 0.75;
+		transform: scaleX(1.75);
+	}
+	50% {
+		opacity: 0.5;
+		transform: scaleX(1.5);
+	}
+	75% {
+		opacity: 0.9;
+		transform: scaleX(1.9);
+	}
+	100% {
+		opacity: 0.2;
+		transform: scaleX(1.2);
+	}
+}
+
+/* .eventContainer {
+} */
+
+.event {
+	background-color: var(--outset-background-color);
+	white-space: wrap;
+	border-radius: 1rem;
+	padding: 1rem;
+	margin-bottom: 2rem;
+	box-shadow: 0 0 1rem rgba(0, 0, 0, 0.5);
+	animation: floatEvent 5s ease-in-out infinite calc(-0.25s * var(--index))
+		forwards;
+}
+
+@keyframes floatEvent {
+	0% {
+		transform: translateY(0);
+	}
+	50% {
+		transform: translateY(1rem);
+	}
+	100% {
+		transform: translateY(0);
+	}
+}
+
+.eventContainer:nth-child(even) {
+	transform: translateX(calc(50% + 30px));
+	--animation: animateEventRight 1.5s ease-in-out 1 2s forwards;
+	text-align: left;
+	opacity: 0;
+}
+
+.eventContainer:nth-child(odd) {
+	transform: translateX(calc(-50% - 30px));
+	--animation: animateEventLeft 1s ease-in-out 1 1.5s forwards;
+	text-align: right;
+	opacity: 0;
+}
+
+#events.animateIn .eventContainer {
+	animation: var(--animation);
+}
+
+#events.animateIn #eventsTimelineBar {
+	animation: animateEventsTimelineBar 1s ease-in-out 1 forwards;
+}
+
+.eventTime {
+	font-family: var(--subheader-font);
+	font-weight: lighter;
+	font-size: 1.25rem;
+}
+
+.eventHeader {
+	font-family: var(--header-font);
+	font-weight: bold;
+	font-size: 1.2rem;
+}
+
+.eventSubheader {
+	font-family: var(--subheader-font);
+	font-weight: normal;
+	font-style: italic;
+}
+
+@keyframes animateEventLeft {
+	from {
+		transform: translateX(0);
+		opacity: 0;
+	}
+
+	to {
+		transform: translateX(calc(-50% - 30px));
+		opacity: 1;
+	}
+}
+
+@keyframes animateEventRight {
+	from {
+		transform: translateX(0);
+		opacity: 0;
+	}
+
+	to {
+		transform: translateX(calc(50% + 30px));
+		opacity: 1;
+	}
+}
+
+@keyframes animateEventsTimelineBar {
+	from {
+		height: 0;
+	}
+
+	to {
+		height: 100%;
+		opacity: 1;
+	}
+}
+
+#personalImageGrid {
+	position: absolute;
+	top: 0;
+	display: flex;
+	flex-direction: row;
+	width: 100vw;
+	margin-left: calc(var(--nav-margin-padding) * -1);
+	height: 100%;
+	overflow: hidden;
+	z-index: -1;
+	pointer-events: none;
+	mask-image: radial-gradient(
+		circle at 50% 50%,
+		black 0%,
+		black 25%,
+		transparent 80%
+	);
+}
+
+#personalLife .aboutSectionHeaderWrapper div {
+	margin-bottom: 0;
+}
+
+#personalLifeContent {
+	position: relative;
+	min-height: 75vh;
+	z-index: 1;
+}
+
+#personalLifeInfo {
+	background-color: var(--main-glassy-background-color);
+	display: inline-block;
+	padding: 30px;
+	border-radius: 40px;
+	left: 50%;
+	height: 75%;
+	aspect-ratio: 0.8;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	position: absolute;
+	backdrop-filter: blur(8px);
+	-webkit-backdrop-filter: blur(8px);
+	box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.5);
+}
+
+#professionalHeadshot {
+	width: 75%;
+	aspect-ratio: 1;
+	object-fit: cover;
+	border-radius: 50%;
+}
+
+#personalLifeInfo h2 {
+	font-size: 2.5rem;
 }

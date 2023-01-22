@@ -1,5 +1,5 @@
 var aboutHeaderText =
-	"My goal as a software engineer is to create code with perspective and purpose - and to ultimately make the world a more human friendly place. Here's how I've been working towards that goal:";
+	"Hi, I'm Matthew! I am a Computer Science student at the University of Central Florida, with an extensive background in fullstack web development. My goal as a software engineer is to create code with perspective and purpose - and to ultimately, make the world a more human friendly place. Here's how I've been working towards that goal:";
 // Places about header text into about header element while giving each a random animation delay
 var aboutHeaderTextElement = $("#aboutHeaderText");
 
@@ -13,9 +13,12 @@ var aboutHeader = $("#aboutHeader");
 $(window).scroll(function () {
 	if (!hasStartedAnimating & isElementOnScreen(aboutHeader)) {
 		hasStartedAnimating = true;
+		var currDelay = 0;
 		for (var i = 0; i < aboutHeaderText.length; i++) {
 			var char = aboutHeaderText.charAt(i);
 			// Add the character to the header element after i * 0.02 seconds
+
+			currDelay += 15;
 			setTimeout(
 				function (char, isFinalChar) {
 					if (!skippedAnimation) {
@@ -27,10 +30,13 @@ $(window).scroll(function () {
 						}
 					}
 				},
-				i * 50,
+				currDelay,
 				char,
 				i === aboutHeaderText.length - 1
 			);
+			if (char == ".") currDelay += 1000;
+			if (char == "!" || char == "-") currDelay += 500;
+			if (char == ",") currDelay += 50;
 		}
 	}
 
@@ -103,7 +109,7 @@ const aboutData = [
 		timeline: "October 2022 - Present",
 		description: "IOS Development Intern",
 		logo: "images/sightplan.png",
-		image: "images/downtownOrlando.jpg",
+		image: "images/downtownOrlando.webp",
 		cards: [
 			{
 				content:
@@ -127,7 +133,7 @@ const aboutData = [
 		shortDescription:
 			"Created react-based app to collect audio data from users",
 		logo: "images/amazon.png",
-		image: "images/spheres.jpg",
+		image: "images/spheres.webp",
 		cards: [
 			{
 				content:
@@ -152,7 +158,7 @@ const aboutData = [
 		description: "College of Engineering and Computer Science",
 		shortDescription: "Ya know",
 		logo: "images/ucf.png",
-		image: "images/reflectionPond.jpeg",
+		image: "images/reflectionPond.webp",
 		location: $("#education .aboutCardsContainer"),
 	},
 	{
@@ -162,7 +168,7 @@ const aboutData = [
 		shortDescription:
 			"Created react-based app to collect audio data from users",
 		logo: "images/suncoast.png",
-		image: "images/suncoastCampus.jpeg",
+		image: "images/suncoastCampus.webp",
 		location: $("#education .aboutCardsContainer"),
 	},
 ];
@@ -261,6 +267,7 @@ function aboutCardsBuilder() {
 		var cardContent = $("<div></div>").addClass("aboutCardContent");
 		var cardIcon = $("<img></img>").addClass("aboutCardIcon");
 		cardIcon.attr("src", data.logo);
+		cardIcon.attr("alt", data.name + " Logo");
 		var cardHeader = $("<div></div>").addClass("aboutCardHeader");
 		cardHeader.append("<span>" + data.name + "</span>");
 		var cardSubtitle = $("<div></div>").addClass("aboutCardSubtitle");
@@ -274,6 +281,7 @@ function aboutCardsBuilder() {
 
 		var cardBG = $("<img/>").addClass("aboutCardBG");
 		cardBG.attr("src", data.image);
+		cardBG.attr("alt", data.name + " Background");
 
 		card.append(cardContent);
 		card.append(cardDescription);
@@ -295,5 +303,20 @@ aboutCardsBuilder();
 // When the user clicks the #aboutPopoverClose element, close the popover
 $("#aboutPopoverClose").click(function () {
 	aboutPopoverClose();
-	console.log("CLOSING");
 });
+
+// When events is in view, add animateIn
+
+$("#events").waypoint(function (direction) {
+	$("#events").addClass("animateIn");
+});
+
+// Adds an index css variable to every .event
+function eventIndexBuilder() {
+	var events = $(".event");
+	for (var i = 0; i < events.length; i++) {
+		$(events[i]).css("--index", i);
+	}
+}
+
+eventIndexBuilder();

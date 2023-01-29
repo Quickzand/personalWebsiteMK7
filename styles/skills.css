@@ -1,8 +1,11 @@
+#skills {
+	padding-bottom: 200px;
+}
+
 .skillsHeader {
 	font-size: 2.5rem;
 	font-weight: 800;
-	color: var(--main-text-color);
-	text-shadow: 0.5rem 0.5rem 1rem var(--main-text-shadow-color);
+	color: var(--main-font-color);
 	line-height: 1;
 	text-align: center;
 	margin-bottom: 50px;
@@ -43,7 +46,6 @@
 	font-size: 1.5rem;
 	font-weight: normal;
 	color: var(--main-text-color);
-	text-shadow: 0.5rem 0.5rem 1rem var(--main-text-shadow-color);
 	line-height: 1;
 	margin-bottom: 1rem;
 	display: flex;
@@ -78,12 +80,28 @@
 	z-index: -1;
 	opacity: 0;
 	transform: translateY(-100%);
-	transition: all 1s calc(var(--index) * 0.1s) ease-in-out;
+	transition: opacity 1s calc(var(--index) * 0.1s) ease-in-out,
+		box-shadow 1s calc(calc(var(--index) * 0.1s) + 2s) ease-in-out;
+	box-shadow: 0 0 0px var(--accent-color);
+}
+
+@keyframes boxShadowFlicker {
+	0% {
+		box-shadow: 0 0 70px var(--accent-color);
+	}
+	50% {
+		box-shadow: 0 0 70px var(--accent-color-slight-transparent);
+	}
+	100% {
+		box-shadow: 0 0 70px var(--accent-color);
+	}
 }
 
 .skillContainer.animateIn .skillBar {
 	opacity: 1;
 	transform: translateY(0);
+	box-shadow: 0 0 70px var(--accent-color);
+	animation: boxShadowFlicker 2s calc(var(--index) * -0.5s) ease-in-out infinite;
 }
 
 .skillBar::after {
@@ -152,6 +170,40 @@
 	animation: floatSkill 3s calc(var(--index) * -0.3s) ease-in-out alternate
 		infinite;
 }
+
+.skillBarBackgroundGradient {
+	content: "";
+	z-index: -1;
+	width: var(--skill-level);
+	height: 2rem;
+	/* background-image: linear-gradient(
+		to right,
+		var(--first-gradient),
+		var(--second-gradient),
+		var(--first-gradient)
+	); */
+	background-size: 200% 100%;
+	background-position: 0 0;
+	position: absolute;
+	/* animation: skillBarGradientAnimation 4s calc(var(--index) * -0.3s) linear
+	infinite; */
+	bottom: 0;
+	/* display: none; */
+	/* padding: 10px;
+	opacity: calc(var(--skill-level) - 50%);
+	pointer-events: none;
+	/* display: none; */
+	/* -webkit-backface-visibility: hidden;
+	-webkit-perspective: 1000;
+	-webkit-transform: translate3d(0, 0, 0);
+	-webkit-transform: translateZ(0);
+	backface-visibility: hidden;
+	transform: translate3d(0, 0, 0); 
+	transform: translateZ(0) translateY(25%);
+	filter: blur(50px); */
+}
+
+/* If on chrome hide  */
 
 @keyframes floatSkill {
 	0% {

@@ -188,18 +188,41 @@ function skillBuilder(skill) {
 	skillHeader.append(skillIcon);
 
 	var skillBar = $("<div>").addClass("skillBar");
+	var skillBarBackgroundGradient = $("<div>").addClass(
+		"skillBarBackgroundGradient"
+	);
 	if (skill.accentColor) {
 		skillBar.css("--accent-color", skill.accentColor);
 		skillBar.css("--first-gradient", hexModifier(skill.accentColor, -25));
 		skillBar.css("--second-gradient", hexModifier(skill.accentColor, 65));
+		skillBar.css(
+			"--accent-color-slight-transparent",
+			transparencyModifier(skill.accentColor, 0.5)
+		);
+		skillBarBackgroundGradient.css("--accent-color", skill.accentColor);
+		skillBarBackgroundGradient.css(
+			"--accent-color-slight-transparent",
+			transparencyModifier(skill.accentColor, 1)
+		);
+		skillBarBackgroundGradient.css(
+			"--first-gradient",
+			hexModifier(skill.accentColor, -25)
+		);
+		skillBarBackgroundGradient.css(
+			"--second-gradient",
+			hexModifier(skill.accentColor, 65)
+		);
+		skillBar.append(skillBarBackgroundGradient);
 	}
 
 	skillBar.css("--skill-level", skill.level * 100 + "%");
+	skillBarBackgroundGradient.css("--skill-level", skill.level * 100 + "%");
 
 	skillBar.attr("data-skill-level", skill.level * 100 + "%");
 
 	skillContainer.append(skillHeader);
 	skillContainer.append(skillBar);
+	skillContainer.append(skillBarBackgroundGradient);
 
 	return skillContainer;
 }
@@ -267,6 +290,38 @@ function hexModifier(hex, x) {
 	return "#" + hexValue;
 }
 
+// Returns rgba value of hex with transparency
+function transparencyModifier(hex, x) {
+	// Takes out # from hex value
+	hex = hex.substring(1);
+
+	// Seperate hex value into r, g, b
+	var r = hex.substring(0, 2);
+	var g = hex.substring(2, 4);
+	var b = hex.substring(4, 6);
+
+	// Convert hex values to decimal
+	r = parseInt(r, 16);
+	g = parseInt(g, 16);
+	b = parseInt(b, 16);
+
+	// Add 0 to the front of each hex value if it is only 1 character long
+	if (r.length == 1) {
+		r = "0" + r;
+	}
+	if (g.length == 1) {
+		g = "0" + g;
+	}
+	if (b.length == 1) {
+		b = "0" + b;
+	}
+
+	// Combine r, g, b values back into hex
+	var hexValue = r + "" + g + "" + b;
+
+	return "rgba(" + r + "," + g + "," + b + "," + x + ")";
+}
+
 var count = 0;
 
 for (var i = 0; i < programmingLanguages.length; i++) {
@@ -279,13 +334,16 @@ for (var i = 0; i < programmingLanguages.length; i++) {
 }
 
 // Upon entering #programmingLanguages section, animate in the skills
-$("#skillsWaypoint").waypoint(function () {
-	$(".skillsHeader").addClass("animateIn");
-	$(".skillContainer").each(function (i) {
-		var skillContainer = $(this);
-		skillContainer.addClass("animateIn");
-		skillContainer.css("--index", i);
-	});
+var skillsContainer = $("#skills");
+$(window).on("scroll", function () {
+	if (skillsContainer.isInViewport()) {
+		$(".skillsHeader").addClass("animateIn");
+		$(".skillContainer").each(function (i) {
+			var skillContainer = $(this);
+			skillContainer.addClass("animateIn");
+			skillContainer.css("--index", i);
+		});
+	}
 });
 
 for (var i = 0; i < technologies.length; i++) {

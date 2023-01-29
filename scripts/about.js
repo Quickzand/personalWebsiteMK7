@@ -68,22 +68,26 @@ function isElementOnScreen() {
 // and the #aboutCardText element is faded in
 var aboutCards = [];
 var education = $("#education");
+var experience = $("#experience");
 $(window).on("scroll", function () {
+	if (!education.isInViewport() && !experience.isInViewport()) {
+		return;
+	}
 	var scrollPos = window.scrollY;
 	// The position where the #experience container is in the center of the screen
 	var middlePos = education.offset().top - $(window).height() / 2;
 	// Get the current scroll position relative to the middle position
 	var relativeScrollPos = scrollPos - middlePos;
 	// Based on the relative scroll position, move the #aboutCard elements to the left
-	for (var i = 0; i < aboutCards.length; i++) {
-		var card = aboutCards[i];
-		var multiplier = relativeScrollPos > 0 ? 1 : -1;
-		$(card).css(
-			"--xOffset",
-			// relativeScrollPos
-			multiplier * 1.03 ** (Math.abs(relativeScrollPos) * 0.23)
-		);
-	}
+	// for (var i = 0; i < aboutCards.length; i++) {
+	// 	var card = aboutCards[i];
+	// 	var multiplier = relativeScrollPos > 0 ? 1 : -1;
+	// 	$(card).css(
+	// 		"--xOffset",
+	// 		// relativeScrollPos
+	// 		multiplier * 1.03 ** (Math.abs(relativeScrollPos) * 0.23)
+	// 	);
+	// }
 });
 
 // For every about card, add a mousex and mouseY css variable to track the mouses' position on the element
@@ -109,7 +113,7 @@ const aboutData = [
 		timeline: "October 2022 - Present",
 		description: "IOS Development Intern",
 		logo: "images/sightplan.png",
-		image: "images/downtownOrlando.webp",
+		image: "images/aboutCards/downtownOrlando.jpeg",
 		cards: [
 			{
 				content:
@@ -133,7 +137,7 @@ const aboutData = [
 		shortDescription:
 			"Created react-based app to collect audio data from users",
 		logo: "images/amazon.png",
-		image: "images/spheres.webp",
+		image: "images/aboutCards/spheres.jpeg",
 		cards: [
 			{
 				content:
@@ -158,7 +162,7 @@ const aboutData = [
 		description: "College of Engineering and Computer Science",
 		shortDescription: "Ya know",
 		logo: "images/ucf.png",
-		image: "images/reflectionPond.webp",
+		image: "images/aboutCards/reflectionPond.jpeg",
 		location: $("#education .aboutCardsContainer"),
 	},
 	{
@@ -168,7 +172,7 @@ const aboutData = [
 		shortDescription:
 			"Created react-based app to collect audio data from users",
 		logo: "images/suncoast.png",
-		image: "images/suncoastCampus.webp",
+		image: "images/aboutCards/suncoastCampus.jpg",
 		location: $("#education .aboutCardsContainer"),
 	},
 ];
@@ -306,9 +310,11 @@ $("#aboutPopoverClose").click(function () {
 });
 
 // When events is in view, add animateIn
-
-$("#events").waypoint(function (direction) {
-	$("#events").addClass("animateIn");
+var events = $("#events");
+$(window).on("scroll", function () {
+	if (events.isInViewport()) {
+		$("#events").addClass("animateIn");
+	}
 });
 
 // Adds an index css variable to every .event

@@ -19,7 +19,7 @@ const projects = [
 				icon: "images/tags/python.svg",
 			},
 			{
-				name: "Progressive Web App",
+				name: "React Native",
 				icon: "images/tags/pwa.svg",
 			},
 		],
@@ -55,6 +55,23 @@ const projects = [
 		id: "homesub",
 		description:
 			"Homesub is my coronavirus relief effort. As someone who has experienced firsthand how difficult it can be to be completely disconnected from the physical environment of school, I wanted to find a way to help my classmates through the rough transition period to online learning. Seeing the difficulties that computer science students had with writing their code from home, I created a website for them to write, test, and submit all of their code from. Homesub was my first time working with any sort of backend, and was a valuable learning experience when it came to working with server side development.",
+		tags: [
+			{
+				name: "HTML",
+			},
+			{
+				name: "CSS",
+			},
+			{
+				name: "JavaScript",
+			},
+			{
+				name: "PHP",
+			},
+			{
+				name: "mySQL",
+			},
+		],
 	},
 	{
 		name: "Wiki What",
@@ -62,6 +79,20 @@ const projects = [
 		id: "wikiWhat",
 		description:
 			"Dequeue is a web application that allows users to create and join virtual queues for businesses. Users can create a queue for a business and share the link with others to join the queue. Users can also join a queue that has already been created by another user. Users can also view the status of their queue and the status of the queues they have joined. Dequeue was built using React, Node.js, Express, and MongoDB.",
+		tags: [
+			{
+				name: "HTML",
+			},
+			{
+				name: "CSS",
+			},
+			{
+				name: "JavaScript",
+			},
+			{
+				name: "Python",
+			},
+		],
 	},
 	{
 		name: "Wifi Panda",
@@ -69,6 +100,20 @@ const projects = [
 		id: "wifiPanda",
 		description:
 			"Dequeue is a web application that allows users to create and join virtual queues for businesses. Users can create a queue for a business and share the link with others to join the queue. Users can also join a queue that has already been created by another user. Users can also view the status of their queue and the status of the queues they have joined. Dequeue was built using React, Node.js, Express, and MongoDB.",
+		tags: [
+			{
+				name: "HTML",
+			},
+			{
+				name: "CSS",
+			},
+			{
+				name: "JavaScript",
+			},
+			{
+				name: "PHP",
+			},
+		],
 	},
 	{
 		name: "Meets Stories",
@@ -76,6 +121,23 @@ const projects = [
 		id: "meets",
 		description:
 			"Dequeue is a web application that allows users to create and join virtual queues for businesses. Users can create a queue for a business and share the link with others to join the queue. Users can also join a queue that has already been created by another user. Users can also view the status of their queue and the status of the queues they have joined. Dequeue was built using React, Node.js, Express, and MongoDB.",
+		tags: [
+			{
+				name: "HTML",
+			},
+			{
+				name: "CSS",
+			},
+			{
+				name: "JavaScript",
+			},
+			{
+				name: "PHP",
+			},
+			{
+				name: "mySQL",
+			},
+		],
 	},
 	{
 		name: "Tankz",
@@ -83,6 +145,26 @@ const projects = [
 		id: "tankz",
 		description:
 			"Dequeue is a web application that allows users to create and join virtual queues for businesses. Users can create a queue for a business and share the link with others to join the queue. Users can also join a queue that has already been created by another user. Users can also view the status of their queue and the status of the queues they have joined. Dequeue was built using React, Node.js, Express, and MongoDB.",
+		tags: [
+			{
+				name: "HTML",
+			},
+			{
+				name: "CSS",
+			},
+			{
+				name: "JavaScript",
+			},
+			{
+				name: "Node.js",
+			},
+			{
+				name: "mySQL",
+			},
+			{
+				name: "WebSockets",
+			},
+		],
 	},
 	{
 		name: "Host Directory",
@@ -90,11 +172,25 @@ const projects = [
 		id: "directory",
 		description:
 			"Dequeue is a web application that allows users to create and join virtual queues for businesses. Users can create a queue for a business and share the link with others to join the queue. Users can also join a queue that has already been created by another user. Users can also view the status of their queue and the status of the queues they have joined. Dequeue was built using React, Node.js, Express, and MongoDB.",
+		tags: [
+			{
+				name: "HTML",
+			},
+			{
+				name: "CSS",
+			},
+			{
+				name: "JavaScript",
+			},
+			{
+				name: "PHP",
+			},
+		],
 	},
 ];
 
 function projectPreviewBuilder(projectInfo) {
-	var projectPreview = $("<div>").addClass("projectPreview");
+	var projectPreview = $("<a>").addClass("projectPreview");
 	var projectPreviewImage = $("<img>")
 		.attr("src", projectInfo.preview)
 		.attr("alt", projectInfo.name + " preview image");
@@ -128,10 +224,27 @@ function projectPreviewBuilder(projectInfo) {
 
 function projectsConstructor(projects) {
 	var projectsContainer = $("#projectsContainer");
-	projects.forEach(function (project) {
-		var projectPreview = projectPreviewBuilder(project);
+	var highlightedProject = projectPreviewBuilder(projects[0]);
+	highlightedProject.addClass("highlightedProject");
+	var highlightedProjectGlow = $("<div>").addClass("highlightedProjectGlow");
+	highlightedProject.append(highlightedProjectGlow);
+	$("#highlightedProjectSubContainer").append(highlightedProject);
+	for (var i = 1; i < projects.length; i++) {
+		var projectPreview = projectPreviewBuilder(projects[i]);
+		projectPreview.css("--index", i);
 		projectsContainer.append(projectPreview);
-	});
+	}
 }
+
+var projectsAnimatedIn = false;
+
+// If projects is on screen then add .animateIn class to projects
+$(window).scroll(function () {
+	if (!projectsAnimatedIn)
+		if ($("#projects").isInViewport()) {
+			projectsAnimatedIn = true;
+			$(".projectPreview").addClass("animateIn");
+		}
+});
 
 projectsConstructor(projects);

@@ -45,27 +45,27 @@ class Cell {
 	update() {
 		this.draw();
 		// If the mouse is over the cell, set the opacity to 0.5
-		if (
-			mouse.x > this.x &&
-			mouse.x < this.x + cellSize &&
-			mouse.y > this.y &&
-			mouse.y < this.y + cellSize
-		) {
-			this.additionalInset = 3;
-			this.mouseOver = true;
-		}
+		// if (
+		// 	mouse.x > this.x &&
+		// 	mouse.x < this.x + cellSize &&
+		// 	mouse.y > this.y &&
+		// 	mouse.y < this.y + cellSize
+		// ) {
+		// 	this.additionalInset = 3;
+		// 	this.mouseOver = true;
+		// }
 
-		if (this.mouseOver) {
-			if (
-				mouse.x < this.x ||
-				mouse.x > this.x + cellSize ||
-				mouse.y < this.y ||
-				mouse.y > this.y + cellSize
-			) {
-				this.additionalInset = 0;
-				this.mouseOver = false;
-			}
-		}
+		// if (this.mouseOver) {
+		// 	if (
+		// 		mouse.x < this.x ||
+		// 		mouse.x > this.x + cellSize ||
+		// 		mouse.y < this.y ||
+		// 		mouse.y > this.y + cellSize
+		// 	) {
+		// 		this.additionalInset = 0;
+		// 		this.mouseOver = false;
+		// 	}
+		// }
 	}
 
 	introAnimation(duration) {
@@ -222,11 +222,9 @@ drawFrame();
 
 function drawFrame() {
 	// Only preform if canvas on screen
-	if (gridCanvas.isInViewport()) {
-		gridCTX.clearRect(0, 0, gridCanvas.width(), gridCanvas.height());
-		for (var i = 0; i < cells.length; i++) {
-			for (var j = 0; j < cells[i].length; j++) cells[i][j].update();
-		}
+	gridCTX.clearRect(0, 0, gridCanvas.width(), gridCanvas.height());
+	for (var i = 0; i < cells.length; i++) {
+		for (var j = 0; j < cells[i].length; j++) cells[i][j].update();
 	}
 	requestAnimationFrame(drawFrame);
 }

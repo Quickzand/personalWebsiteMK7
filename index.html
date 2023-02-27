@@ -298,23 +298,19 @@
 			</div> -->
 			<div id="experience" class="aboutSection">
 				<div class="aboutSectionHeaderWrapper">
-					<div data-text="Experience" class="shadowEffect header">
-						Experience
-					</div>
+					<div data-text="Experience" class="header">Experience</div>
 				</div>
 				<div class="aboutCardsContainer"></div>
 			</div>
 			<div id="education" class="aboutSection">
 				<div class="aboutSectionHeaderWrapper">
-					<div data-text="Education" class="shadowEffect header reversed">
-						Education
-					</div>
+					<div data-text="Education" class="header reversed">Education</div>
 				</div>
 				<div class="aboutCardsContainer"></div>
 			</div>
 			<div id="events">
 				<div class="aboutSectionHeaderWrapper">
-					<div data-text="Events" class="shadowEffect header">Events</div>
+					<div data-text="Events" class="header">Events</div>
 				</div>
 				<div id="eventsTimeline">
 					<div id="eventsTimelineBackground"></div>
@@ -362,7 +358,7 @@
 		<div id="skills" class="bodySection">
 			<div id="skillsWaypoint"></div>
 			<div id="skillsHeaderWrapper">
-				<div data-text="Skills" class="shadowEffect header">Skills</div>
+				<div data-text="Skills" class="header">Skills</div>
 			</div>
 			<div class="skillsContainer">
 				<div class="skillsHeader">Programming Languages</div>
@@ -380,12 +376,27 @@
 		<div id="projects" class="bodySection">
 			<div id="projectsWaypoint"></div>
 			<div id="projectsHeaderWrapper">
-				<div data-text="Projects" class="shadowEffect header">Projects</div>
+				<div data-text="Projects" class="header">Projects</div>
 			</div>
 			<div id="highlightedProjectContainer">
 				<div id="highlightedProjectSubContainer"></div>
 			</div>
 			<div id="projectsContainer"></div>
+		</div>
+		<div id="projectPopover">
+			<div id="projectPopoverCloseButton" onclick="projectPopoverClose()">
+				x
+			</div>
+			<div id="projectPasswordInputContainer">
+				<label for="projectPassword" id="projectPasswordLabel"
+					>Please Enter The Password to See This Project</label
+				>
+				<input
+					type="password"
+					name="projectPassword"
+					id="projectPasswordInput" />
+				<button id="projectPasswordSubmit">Submit</button>
+			</div>
 		</div>
 
 		<br />

@@ -77,6 +77,7 @@ const projects = [
 		name: "Wiki What",
 		preview: "images/projects/WWPreview.png",
 		id: "wikiWhat",
+		hasPassword: true,
 		description:
 			"Dequeue is a web application that allows users to create and join virtual queues for businesses. Users can create a queue for a business and share the link with others to join the queue. Users can also join a queue that has already been created by another user. Users can also view the status of their queue and the status of the queues they have joined. Dequeue was built using React, Node.js, Express, and MongoDB.",
 		tags: [
@@ -118,6 +119,7 @@ const projects = [
 	{
 		name: "Meets Stories",
 		preview: "images/projects/meetsPreview.png",
+		hasPassword: true,
 		id: "meets",
 		description:
 			"Dequeue is a web application that allows users to create and join virtual queues for businesses. Users can create a queue for a business and share the link with others to join the queue. Users can also join a queue that has already been created by another user. Users can also view the status of their queue and the status of the queues they have joined. Dequeue was built using React, Node.js, Express, and MongoDB.",
@@ -203,6 +205,10 @@ function projectPreviewBuilder(projectInfo) {
 	var projectPreviewTagContainer = $("<div>").addClass(
 		"projectPreviewTagsContainer"
 	);
+
+	if (projectInfo.hasPassword) {
+		projectPreview.addClass("hasPassword");
+	}
 	if (projectInfo.tags)
 		projectInfo.tags.forEach(function (tag) {
 			var projectPreviewTag = $("<div>").addClass("projectPreviewTag");
@@ -219,6 +225,7 @@ function projectPreviewBuilder(projectInfo) {
 		projectPreviewDescription,
 		projectPreviewTagContainer
 	);
+	projectPreview.on("click", projectPopoverOpen);
 	return projectPreview;
 }
 
@@ -248,3 +255,13 @@ $(window).scroll(function () {
 });
 
 projectsConstructor(projects);
+
+function projectPopoverOpen() {
+	$("#projectPopover").addClass("open");
+	stopBodyScroll();
+}
+
+function projectPopoverClose() {
+	$("#projectPopover").removeClass("open");
+	startBodyScroll();
+}

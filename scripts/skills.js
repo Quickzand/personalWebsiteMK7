@@ -227,6 +227,47 @@ function skillBuilder(skill) {
 	return skillContainer;
 }
 
+function orderBasedOffPercentage(skillList) {
+	skillList.sort(function (a, b) {
+		return b.level - a.level;
+	});
+}
+
+
+// compare two hex values and return how close they are
+function compareHex(hex1, hex2) {
+	// Takes out # from hex value
+	hex1 = hex1.substring(1);
+	hex2 = hex2.substring(1);
+
+	// Seperate hex value into r, g, b
+	var r1 = hex1.substring(0, 2);
+	var g1 = hex1.substring(2, 4);
+	var b1 = hex1.substring(4, 6);
+
+	var r2 = hex2.substring(0, 2);
+	var g2 = hex2.substring(2, 4);
+	var b2 = hex2.substring(4, 6);
+
+	// Convert hex values to decimal
+	r1 = parseInt(r1, 16);
+	g1 = parseInt(g1, 16);
+	b1 = parseInt(b1, 16);
+
+	r2 = parseInt(r2, 16);
+	g2 = parseInt(g2, 16);
+	b2 = parseInt(b2, 16);
+
+	// Add x to each decimal value
+	var r = Math.abs(r1 - r2);
+	var g = Math.abs(g1 - g2);
+	var b = Math.abs(b1 - b2);
+
+	var total = r + g + b;
+
+	return total;
+}
+
 function hexModifier(hex, x) {
 	// Takes out # from hex value
 	hex = hex.substring(1);
@@ -324,6 +365,7 @@ function transparencyModifier(hex, x) {
 
 var count = 0;
 
+orderBasedOffPercentage(programmingLanguages);
 for (var i = 0; i < programmingLanguages.length; i++) {
 	var skill = programmingLanguages[i];
 	var skillContainer = skillBuilder(skill);

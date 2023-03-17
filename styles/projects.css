@@ -337,6 +337,76 @@
 	padding: 10px;
 	color: var(--main-font-color);
 	font-family: var(--body-font);
+	transition: border 0.25s ease-in-out;
+}
+
+#projectPasswordInput.error {
+	border: 1px solid red;
+	animation: incorrectShake 0.25s ease-in-out;
+}
+
+@keyframes incorrectShake {
+	0% {
+		transform: translateX(0);
+	}
+
+	25% {
+		transform: translateX(10px);
+	}
+
+	50% {
+		transform: translateX(-10px);
+	}
+
+	75% {
+		transform: translateX(10px);
+	}
+
+	100% {
+		transform: translateX(0);
+	}
+}
+
+#projectPopoverPasswordInput {
+	width: 100%;
+	height: 100%;
+}
+
+#projectPopoverPasswordInput:not(.open) {
+	display: none;
+}
+
+#projectLoadingBackground,
+#projectLoadingForeground {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+#projectLoadingForeground {
+	width: 250px;
+	height: 250px;
+}
+
+#projectLoadingBackground {
+	width: 500px;
+	height: 500px;
+	animation: loadingSpin 2s 0.5s ease-out infinite;
+}
+
+@keyframes loadingSpin {
+	0% {
+		transform: translate(-50%, -50%) rotate(0deg);
+	}
+
+	50% {
+		transform: translate(-50%, -50%) rotate(180deg) scale(1.15);
+	}
+
+	100% {
+		transform: translate(-50%, -50%) rotate(360deg);
+	}
 }
 
 #projectPasswordLabel {
@@ -352,4 +422,165 @@
 	color: var(--main-font-color);
 	padding: 20px;
 	cursor: pointer;
+}
+
+#projectPopoverLoading:not(.open) {
+	opacity: 0;
+	pointer-events: none;
+}
+
+#projectPopoverLoading {
+	opacity: 1;
+	transition: opacity 0.25s ease-in-out;
+}
+
+#projectPopoverContent:not(.open) {
+	opacity: 0;
+	pointer-events: none;
+}
+
+#projectPopoverContent {
+	opacity: 1;
+	transition: opacity 0.05s ease-in-out;
+}
+
+#projectHeader {
+	display: flex;
+	font-size: 3.5rem;
+	font-family: var(--title-font);
+	margin-left: 20px;
+	margin-top: 10px;
+	align-items: center;
+}
+
+#projectName {
+	color: var(--main-font-color);
+	font-weight: bold;
+}
+
+#projectTime {
+	font-family: var(--subheader-font);
+	font-size: 3rem;
+	margin-left: 1rem;
+	font-weight: lighter;
+}
+
+#projectTime::before {
+	content: "|";
+	margin-right: 1rem;
+}
+
+#projectLinks {
+	margin-top: 10px;
+}
+
+.projectLink svg {
+	height: 1.5rem;
+	width: 1.5rem;
+	margin-right: 10px;
+}
+
+.projectLink {
+	fill: var(--main-font-color);
+	display: inline-flex;
+	align-items: center;
+	background-color: var(--outset-background-color);
+	font-size: 1.2rem;
+	color: var(--main-font-color);
+	text-decoration: none;
+	padding: 0.5rem;
+	margin-left: 20px;
+	border-radius: 10px;
+	transition: background-color 0.25s ease-in-out, color 0.25s ease-in-out,
+		fill 0.25s ease-in-out;
+}
+
+.projectLink:nth-child(odd):hover {
+	background-color: var(--first-accent-color);
+	color: var(--main-background-color);
+	fill: var(--main-background-color);
+}
+
+.projectLink:nth-child(even):hover {
+	background-color: var(--second-accent-color);
+	color: var(--main-background-color);
+	fill: var(--main-background-color);
+}
+
+#projectDescription {
+	font-size: 1.25em;
+	font-family: var(--body-font);
+	line-height: 1.6;
+	color: var(--main-font-color);
+}
+
+#projectBody {
+	display: flex;
+	flex-direction: column;
+	margin-top: 20px;
+	margin-left: 20px;
+	margin-right: 20px;
+}
+
+#projectImages {
+	display: flex;
+	flex-direction: row;
+	gap: 20px;
+	height: 300px;
+	width: 100%;
+	overflow-x: scroll;
+	/* scroll-snap-stop: normal; */
+	scroll-snap-type: x mandatory;
+	overflow-y: hidden;
+}
+
+#projectImages::-webkit-scrollbar {
+	background-color: transparent;
+	height: 5px;
+}
+
+#projectImages::-webkit-scrollbar-thumb {
+	background-color: var(--first-accent-color);
+	transition: background-color 0.25s ease-in-out;
+	border-radius: 10px;
+}
+
+#projectImages::-webkit-scrollbar-thumb:hover {
+	background-color: var(--second-accent-color);
+}
+
+#projectImages .projectImage {
+	height: 100%;
+	object-fit: contain;
+	scroll-snap-stop: center;
+	scroll-snap-align: center;
+	border-radius: 10px;
+	scale: var(--scale);
+	cursor: pointer;
+	/* box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.5); */
+	transition: filter 0.25s ease-in-out;
+}
+
+.projectImage:first-of-type {
+	margin-left: 50vw;
+}
+
+.projectImage:last-of-type {
+	margin-right: 50vw;
+}
+
+.projectImage:hover {
+	filter: brightness(1.25);
+}
+
+@media only screen and (max-width: 860px) {
+	.projectImage {
+		max-width: 200px;
+		height: auto !important;
+	}
+
+	.projectLink {
+		padding: 1rem;
+		font-size: 2em !important;
+	}
 }

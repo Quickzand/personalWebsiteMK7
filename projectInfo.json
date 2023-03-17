@@ -1,0 +1,312 @@
+{
+	"dequeue": {
+		"name": "Dequeue",
+		"time": "November 2022",
+		"links": [
+			{
+				"type": "github",
+				"href": "https://api.github.com/repos/Dequeue/dequeue"
+			},
+			{
+				"type": "collaborator",
+				"href": "https://api.github.com/repos/Dequeue/dequeue",
+				"collaboratorName": "Seth Lenhof"
+			},
+			{
+				"type": "collaborator",
+				"href": "https://alexharris.design",
+				"collaboratorName": "Alex Harris"
+			}
+		],
+		"description": "Dequeue is an app that allows you to control your computer from your phone, made by myself and Ayden Colby! It has a home screen allowing you to control more general things like volume, music, or terminal commands, and a section which allows you to create your own shortcuts and scripts to run on your computer remotely. This is my first time working with a mobile centric design and my first time using progressive web apps.",
+		"images": [
+			"images/projects/dequeue/dequeue1.png",
+			"images/projects/dequeue/dequeue2.png",
+			"images/projects/dequeue/dequeue3.png",
+			"images/projects/dequeue/dequeue4.png",
+			"images/projects/dequeue/dequeue5.png",
+			"images/projects/dequeue/dequeue6.png",
+			"images/projects/dequeue/dequeue6.png",
+			"images/projects/dequeue/dequeue6.png"
+		]
+	},
+	"homesub": {
+		"name": "Homesub",
+		"preview": "images/projects/WWPreview.png",
+		"id": "wikiWhat",
+		"hasPassword": true,
+		"description": "Dequeue is a web application that allows users to create and join virtual queues for businesses. Users can create a queue for a business and share the link with others to join the queue. Users can also join a queue that has already been created by another user. Users can also view the status of their queue and the status of the queues they have joined. Dequeue was built using React, Node.js, Express, and MongoDB.",
+		"tags": [
+			{
+				"name": "HTML"
+			},
+			{
+				"name": "CSS"
+			},
+			{
+				"name": "JavaScript"
+			},
+			{
+				"name": "Python"
+			}
+		],
+		"images": [
+			"images/projects/dequeue/dequeue1.png",
+			"images/projects/dequeue/dequeue2.png",
+			"images/projects/dequeue/dequeue3.png",
+			"images/projects/dequeue/dequeue4.png",
+			"images/projects/dequeue/dequeue5.png",
+			"images/projects/dequeue/dequeue6.png",
+			"images/projects/dequeue/dequeue6.png",
+			"images/projects/dequeue/dequeue6.png"
+		]
+	},
+	"wifiPanda": {
+		"name": "Wiki What",
+		"preview": "images/projects/WWPreview.png",
+		"id": "wikiWhat",
+		"hasPassword": true,
+		"description": "Dequeue is a web application that allows users to create and join virtual queues for businesses. Users can create a queue for a business and share the link with others to join the queue. Users can also join a queue that has already been created by another user. Users can also view the status of their queue and the status of the queues they have joined. Dequeue was built using React, Node.js, Express, and MongoDB.",
+		"tags": [
+			{
+				"name": "HTML"
+			},
+			{
+				"name": "CSS"
+			},
+			{
+				"name": "JavaScript"
+			},
+			{
+				"name": "Python"
+			}
+		],
+		"images": [
+			"images/projects/dequeue/dequeue1.png",
+			"images/projects/dequeue/dequeue2.png",
+			"images/projects/dequeue/dequeue3.png",
+			"images/projects/dequeue/dequeue4.png",
+			"images/projects/dequeue/dequeue5.png",
+			"images/projects/dequeue/dequeue6.png",
+			"images/projects/dequeue/dequeue6.png",
+			"images/projects/dequeue/dequeue6.png"
+		]
+	},
+	"meetsStories": {
+		"name": "Wiki What",
+		"preview": "images/projects/WWPreview.png",
+		"id": "wikiWhat",
+		"hasPassword": true,
+		"description": "Dequeue is a web application that allows users to create and join virtual queues for businesses. Users can create a queue for a business and share the link with others to join the queue. Users can also join a queue that has already been created by another user. Users can also view the status of their queue and the status of the queues they have joined. Dequeue was built using React, Node.js, Express, and MongoDB.",
+		"tags": [
+			{
+				"name": "HTML"
+			},
+			{
+				"name": "CSS"
+			},
+			{
+				"name": "JavaScript"
+			},
+			{
+				"name": "Python"
+			}
+		],
+		"images": [
+			"images/projects/dequeue/dequeue1.png",
+			"images/projects/dequeue/dequeue2.png",
+			"images/projects/dequeue/dequeue3.png",
+			"images/projects/dequeue/dequeue4.png",
+			"images/projects/dequeue/dequeue5.png",
+			"images/projects/dequeue/dequeue6.png",
+			"images/projects/dequeue/dequeue6.png",
+			"images/projects/dequeue/dequeue6.png"
+		]
+	},
+	"tankz": {
+		"name": "Wiki What",
+		"preview": "images/projects/WWPreview.png",
+		"id": "wikiWhat",
+		"hasPassword": true,
+		"description": "Dequeue is a web application that allows users to create and join virtual queues for businesses. Users can create a queue for a business and share the link with others to join the queue. Users can also join a queue that has already been created by another user. Users can also view the status of their queue and the status of the queues they have joined. Dequeue was built using React, Node.js, Express, and MongoDB.",
+		"tags": [
+			{
+				"name": "HTML"
+			},
+			{
+				"name": "CSS"
+			},
+			{
+				"name": "JavaScript"
+			},
+			{
+				"name": "Python"
+			}
+		],
+		"images": [
+			"images/projects/dequeue/dequeue1.png",
+			"images/projects/dequeue/dequeue2.png",
+			"images/projects/dequeue/dequeue3.png",
+			"images/projects/dequeue/dequeue4.png",
+			"images/projects/dequeue/dequeue5.png",
+			"images/projects/dequeue/dequeue6.png",
+			"images/projects/dequeue/dequeue6.png",
+			"images/projects/dequeue/dequeue6.png"
+		]
+	},
+	"hostDirectory": {
+		"name": "Wiki What",
+		"preview": "images/projects/WWPreview.png",
+		"id": "wikiWhat",
+		"hasPassword": true,
+		"description": "Dequeue is a web application that allows users to create and join virtual queues for businesses. Users can create a queue for a business and share the link with others to join the queue. Users can also join a queue that has already been created by another user. Users can also view the status of their queue and the status of the queues they have joined. Dequeue was built using React, Node.js, Express, and MongoDB.",
+		"tags": [
+			{
+				"name": "HTML"
+			},
+			{
+				"name": "CSS"
+			},
+			{
+				"name": "JavaScript"
+			},
+			{
+				"name": "Python"
+			}
+		],
+		"images": [
+			"images/projects/dequeue/dequeue1.png",
+			"images/projects/dequeue/dequeue2.png",
+			"images/projects/dequeue/dequeue3.png",
+			"images/projects/dequeue/dequeue4.png",
+			"images/projects/dequeue/dequeue5.png",
+			"images/projects/dequeue/dequeue6.png",
+			"images/projects/dequeue/dequeue6.png",
+			"images/projects/dequeue/dequeue6.png"
+		]
+	},
+	"wikiWhat": {
+		"name": "Wiki What",
+		"preview": "images/projects/WWPreview.png",
+		"id": "wikiWhat",
+		"hasPassword": true,
+		"description": "Dequeue is a web application that allows users to create and join virtual queues for businesses. Users can create a queue for a business and share the link with others to join the queue. Users can also join a queue that has already been created by another user. Users can also view the status of their queue and the status of the queues they have joined. Dequeue was built using React, Node.js, Express, and MongoDB.",
+		"tags": [
+			{
+				"name": "HTML"
+			},
+			{
+				"name": "CSS"
+			},
+			{
+				"name": "JavaScript"
+			},
+			{
+				"name": "Python"
+			}
+		],
+		"images": [
+			"images/projects/dequeue/dequeue1.png",
+			"images/projects/dequeue/dequeue2.png",
+			"images/projects/dequeue/dequeue3.png",
+			"images/projects/dequeue/dequeue4.png",
+			"images/projects/dequeue/dequeue5.png",
+			"images/projects/dequeue/dequeue6.png",
+			"images/projects/dequeue/dequeue6.png",
+			"images/projects/dequeue/dequeue6.png"
+		]
+	},
+	"wikiWhat": {
+		"name": "Wiki What",
+		"preview": "images/projects/WWPreview.png",
+		"id": "wikiWhat",
+		"hasPassword": true,
+		"description": "Dequeue is a web application that allows users to create and join virtual queues for businesses. Users can create a queue for a business and share the link with others to join the queue. Users can also join a queue that has already been created by another user. Users can also view the status of their queue and the status of the queues they have joined. Dequeue was built using React, Node.js, Express, and MongoDB.",
+		"tags": [
+			{
+				"name": "HTML"
+			},
+			{
+				"name": "CSS"
+			},
+			{
+				"name": "JavaScript"
+			},
+			{
+				"name": "Python"
+			}
+		],
+		"images": [
+			"images/projects/dequeue/dequeue1.png",
+			"images/projects/dequeue/dequeue2.png",
+			"images/projects/dequeue/dequeue3.png",
+			"images/projects/dequeue/dequeue4.png",
+			"images/projects/dequeue/dequeue5.png",
+			"images/projects/dequeue/dequeue6.png",
+			"images/projects/dequeue/dequeue6.png",
+			"images/projects/dequeue/dequeue6.png"
+		]
+	},
+	"wikiWhat": {
+		"name": "Wiki What",
+		"preview": "images/projects/WWPreview.png",
+		"id": "wikiWhat",
+		"hasPassword": true,
+		"description": "Dequeue is a web application that allows users to create and join virtual queues for businesses. Users can create a queue for a business and share the link with others to join the queue. Users can also join a queue that has already been created by another user. Users can also view the status of their queue and the status of the queues they have joined. Dequeue was built using React, Node.js, Express, and MongoDB.",
+		"tags": [
+			{
+				"name": "HTML"
+			},
+			{
+				"name": "CSS"
+			},
+			{
+				"name": "JavaScript"
+			},
+			{
+				"name": "Python"
+			}
+		],
+		"images": [
+			"images/projects/dequeue/dequeue1.png",
+			"images/projects/dequeue/dequeue2.png",
+			"images/projects/dequeue/dequeue3.png",
+			"images/projects/dequeue/dequeue4.png",
+			"images/projects/dequeue/dequeue5.png",
+			"images/projects/dequeue/dequeue6.png",
+			"images/projects/dequeue/dequeue6.png",
+			"images/projects/dequeue/dequeue6.png"
+		]
+	},
+	"wikiWhat": {
+		"name": "Wiki What",
+		"preview": "images/projects/WWPreview.png",
+		"id": "wikiWhat",
+		"hasPassword": true,
+		"description": "Dequeue is a web application that allows users to create and join virtual queues for businesses. Users can create a queue for a business and share the link with others to join the queue. Users can also join a queue that has already been created by another user. Users can also view the status of their queue and the status of the queues they have joined. Dequeue was built using React, Node.js, Express, and MongoDB.",
+		"tags": [
+			{
+				"name": "HTML"
+			},
+			{
+				"name": "CSS"
+			},
+			{
+				"name": "JavaScript"
+			},
+			{
+				"name": "Python"
+			}
+		],
+		"images": [
+			"images/projects/dequeue/dequeue1.png",
+			"images/projects/dequeue/dequeue2.png",
+			"images/projects/dequeue/dequeue3.png",
+			"images/projects/dequeue/dequeue4.png",
+			"images/projects/dequeue/dequeue5.png",
+			"images/projects/dequeue/dequeue6.png",
+			"images/projects/dequeue/dequeue6.png",
+			"images/projects/dequeue/dequeue6.png"
+		]
+	}
+}

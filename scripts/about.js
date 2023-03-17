@@ -79,15 +79,15 @@ $(window).on("scroll", function () {
 	// Get the current scroll position relative to the middle position
 	var relativeScrollPos = scrollPos - middlePos;
 	// Based on the relative scroll position, move the #aboutCard elements to the left
-	// for (var i = 0; i < aboutCards.length; i++) {
-	// 	var card = aboutCards[i];
-	// 	var multiplier = relativeScrollPos > 0 ? 1 : -1;
-	// 	$(card).css(
-	// 		"--xOffset",
-	// 		// relativeScrollPos
-	// 		multiplier * 1.03 ** (Math.abs(relativeScrollPos) * 0.23)
-	// 	);
-	// }
+	for (var i = 0; i < aboutCards.length; i++) {
+		var card = aboutCards[i];
+		var multiplier = relativeScrollPos > 0 ? 1 : -1;
+		$(card).css(
+			"--xOffset",
+			// relativeScrollPos
+			multiplier * 1.03 ** (Math.abs(relativeScrollPos) * 0.23)
+		);
+	}
 });
 
 // For every about card, add a mousex and mouseY css variable to track the mouses' position on the element

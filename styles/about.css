@@ -26,6 +26,25 @@
 		gap: 20px;
 		grid-template-columns: 1fr;
 	}
+
+	#aboutHeaderPlaceholderText {
+		font-size: 2.5rem !important;
+		margin-bottom: 10rem;
+		line-height: 1.6;
+	}
+
+	#aboutHeaderText {
+		font-size: 2.5rem !important;
+	}
+
+	#about {
+		padding-top: 10px;
+		line-height: 1.6;
+	}
+
+	#eventsTimelineBar {
+		width: 5px !important;
+	}
 }
 
 #aboutHeader.animateOut {
@@ -81,9 +100,10 @@
 }
 
 .aboutCard {
-	width: 35vw;
+	width: 30rem;
+
 	aspect-ratio: 1.618033988749894;
-	max-height: 35vh;
+
 	position: relative;
 	overflow: hidden;
 	background-color: var(--outset-background-color);

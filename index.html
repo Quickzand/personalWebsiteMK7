@@ -18,6 +18,7 @@
 		<script src="scripts/main.js"></script>
 		<script src="scripts/header.js" async defer></script>
 		<script src="scripts/nav.js" async defer></script>
+		<script src="scripts/imageModal.js" async defer></script>
 		<!-- <script src="scripts/personal.js" async defer></script> -->
 		<script src="scripts/about.js" async defer></script>
 		<script src="scripts/skills.js" async defer></script>
@@ -32,6 +33,7 @@
 		<link rel="stylesheet" href="styles/header.css" />
 		<link rel="stylesheet" href="styles/about.css" />
 		<link rel="stylesheet" href="styles/skills.css" />
+		<link rel="stylesheet" href="styles/projects.css" />
 		<link rel="stylesheet" href="styles/projects.css" />
 
 		<!-- adds the icon -->
@@ -387,15 +389,59 @@
 			<div id="projectPopoverCloseButton" onclick="projectPopoverClose()">
 				x
 			</div>
-			<div id="projectPasswordInputContainer">
-				<label for="projectPassword" id="projectPasswordLabel"
-					>Please Enter The Password to See This Project</label
-				>
-				<input
-					type="password"
-					name="projectPassword"
-					id="projectPasswordInput" />
-				<button id="projectPasswordSubmit">Submit</button>
+			<div id="projectPopoverLoading" class="">
+				<img
+					src="images/hexagonOutline.svg"
+					alt="Loading Background"
+					id="projectLoadingBackground" />
+				<img
+					src="images/icon.svg"
+					alt="Logo Base"
+					id="projectLoadingForeground" />
+			</div>
+			<div id="projectPopoverPasswordInput">
+				<div id="projectPasswordInputContainer">
+					<label for="projectPassword" id="projectPasswordLabel"
+						>Please Enter The Password to See This Project</label
+					>
+					<input
+						type="password"
+						name="projectPassword"
+						id="projectPasswordInput" />
+					<button
+						id="projectPasswordSubmit"
+						onclick="attemptToGetProjectDataWithPass()">
+						Submit
+					</button>
+				</div>
+			</div>
+			<div id="projectPopoverContent">
+				<div id="projectHeader">
+					<div id="projectName"></div>
+					<div id="projectTime"></div>
+				</div>
+				<div id="projectLinks"></div>
+				<div id="projectBody">
+					<div id="projectImages"></div>
+					<div id="projectDescription"></div>
+				</div>
+			</div>
+		</div>
+
+		<div id="imageModal">
+			<div id="imageModalContent">
+				<img
+					src="images/professionalPic.png"
+					alt="Expanded Image"
+					id="imageModalImage" />
+				<div id="imageModalButtons">
+					<div
+						id="imageModalCloseButton"
+						class="imageModalButon"
+						onclick="imageModalClose()">
+						x
+					</div>
+				</div>
 			</div>
 		</div>
 

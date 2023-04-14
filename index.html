@@ -15,10 +15,12 @@
 			content="black-translucent" />
 		<script src="scripts/jquery.js"></script>
 		<script src="scripts/jquery.waypoints.min.js"></script>
+		<script src="scripts/jquery.cookie.js"></script>
 		<script src="scripts/main.js"></script>
 		<script src="scripts/header.js" async defer></script>
 		<script src="scripts/nav.js" async defer></script>
 		<script src="scripts/imageModal.js" async defer></script>
+		<script src="scripts/colorPalettes.js" async defer></script>
 		<!-- <script src="scripts/personal.js" async defer></script> -->
 		<script src="scripts/about.js" async defer></script>
 		<script src="scripts/skills.js" async defer></script>
@@ -170,6 +172,21 @@
 				</g>
 			</svg>
 		</div>
+		<div id="colorPalettes">
+			<svg
+				onclick="toggleColorPalettes()"
+				id="palettesIcon"
+				viewBox="0 0 800 800"
+				xmlns="http://www.w3.org/2000/svg"
+				xmlns:xlink="http://www.w3.org/1999/xlink">
+				<path
+					id="pallete"
+					ill-rule="evenodd"
+					d="M 333.333344 100 C 370.15332 100 400 129.847656 400 166.666687 L 400 633.333313 C 400 670.153381 370.15332 700 333.333344 700 L 166.666672 700 C 129.847672 700 100 670.153381 100 633.333313 L 100 166.666687 C 100 129.847656 129.847672 100 166.666672 100 L 333.333344 100 Z M 655.31665 403.710022 C 679.710388 412.225616 697.638306 434.516663 699.783997 461.261139 L 700 633.333313 C 700 668.479675 672.805054 697.272217 638.308838 699.817139 L 633.333313 700 L 433.333344 700 L 433.333344 625.693359 L 655.31665 403.710022 Z M 250 500 C 222.385666 500 200 522.386719 200 550 C 200 577.613342 222.385666 600 250 600 C 277.614349 600 300 577.613342 300 550 C 300 522.386719 277.614349 500 250 500 Z M 454.526672 133.334351 C 479.189819 108.669617 518.374634 107.37146 544.566406 129.43988 L 548.806641 133.334351 L 666.656677 251.185364 C 690.176453 274.704224 692.449463 311.423431 673.475586 337.494598 L 433.333344 578.553345 L 433.333344 154.526672 L 454.526672 133.334351 Z" />
+			</svg>
+			<div id="colorPalettesList"></div>
+		</div>
+
 		<div id="aboutPopover">
 			<div id="aboutPopoverContent">
 				<img
@@ -469,15 +486,14 @@
 				</form>
 			</div>
 		</footer>
-
 		<a href="resume.pdf" download hidden id="downloadResume"></a>
+		<script>
+			document.write(
+				'<script src="http://' +
+					(location.host || "localhost").split(":")[0] +
+					':35729/livereload.js?snipver=1"></' +
+					"script>"
+			);
+		</script>
 	</body>
-	<script>
-		document.write(
-			'<script src="http://' +
-				(location.host || "localhost").split(":")[0] +
-				':35729/livereload.js?snipver=1"></' +
-				"script>"
-		);
-	</script>
 </html>

@@ -32,7 +32,10 @@ class Cell {
 	}
 
 	draw() {
-		gridCTX.fillStyle = "rgba(18, 18, 18, " + this.opacity + ")";
+		gridCTX.fillStyle = hexToRGBA(
+			$(":root").css("--main-background-color"),
+			this.opacity
+		);
 		// Draws cell taking into account the cell gap
 		gridCTX.fillRect(
 			this.x + (cellGap + this.additionalInset) / 2,
@@ -136,6 +139,18 @@ class Cell {
 				clearInterval(shrinkInterval);
 			}
 		}, 50);
+	}
+}
+
+function hexToRGBA(hex, opacity) {
+	try {
+		var r = parseInt(hex.slice(1, 3), 16);
+		var g = parseInt(hex.slice(3, 5), 16);
+		var b = parseInt(hex.slice(5, 7), 16);
+
+		return "rgba(" + r + ", " + g + ", " + b + ", " + opacity + ")";
+	} catch {
+		return "rgba(0, 0, 0, 0, " + opacity + ")";
 	}
 }
 

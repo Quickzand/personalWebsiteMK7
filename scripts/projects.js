@@ -193,15 +193,19 @@ const projects = [
 
 function projectPreviewBuilder(projectInfo) {
 	var projectPreview = $("<div>").addClass("projectPreview");
+	var projectPreviewTopRow = $("<div>").addClass("projectPreviewTopRow");
 	var projectPreviewImage = $("<img>")
 		.attr("src", projectInfo.preview)
 		.attr("alt", projectInfo.name + " preview image");
+	var projectPreviewBody = $("<div>").addClass("projectPreviewBody");
 	var projectPreviewName = $("<h2>")
 		.text(projectInfo.name)
 		.addClass("projectPreviewName");
 	var projectPreviewDescription = $("<p>")
 		.addClass("projectPreviewDescription")
 		.text(projectInfo.description);
+	projectPreviewBody.append(projectPreviewName, projectPreviewDescription);
+	projectPreviewTopRow.append(projectPreviewImage, projectPreviewBody);
 	var projectPreviewTagContainer = $("<div>").addClass(
 		"projectPreviewTagsContainer"
 	);
@@ -216,12 +220,7 @@ function projectPreviewBuilder(projectInfo) {
 			projectPreviewTag.append(projectPreviewTagIcon);
 			projectPreviewTagContainer.append(projectPreviewTag);
 		});
-	projectPreview.append(
-		projectPreviewImage,
-		projectPreviewName,
-		projectPreviewDescription,
-		projectPreviewTagContainer
-	);
+	projectPreview.append(projectPreviewTopRow, projectPreviewTagContainer);
 
 	projectPreview.attr("data-projectID", projectInfo.id);
 	if (projectInfo.hasPassword) {
@@ -287,6 +286,9 @@ var githubSVG =
 
 var collaboratorSVG =
 	'<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M16 15.503A5.041 5.041 0 1 0 16 5.42a5.041 5.041 0 0 0 0 10.083zm0 2.215c-6.703 0-11 3.699-11 5.5v3.363h22v-3.363c0-2.178-4.068-5.5-11-5.5z"/></svg>';
+
+var devpostSVG =
+	'<svg viewBox="0 0 280 242" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path id="Logo" fill-rule="evenodd"  d="M 70.099609 242 L 0 120.699219 L 70.099609 -0.699219 L 210.199219 -0.699219 L 280.300781 120.699219 L 210.199219 242 L 70.099609 242 Z M 88.699219 194.300781 L 132.699219 194.300781 C 170.599197 194.300781 208.099609 172.499161 208.099609 120.699219 C 208.099609 66.799271 176.900726 47 134.800781 47 L 88.699219 47 L 88.699219 194.300781 Z M 118.099609 165.699219 L 118.099609 75.599609 L 133.699219 75.599609 C 164.899185 75.599609 177.799225 90.59964 177.699219 120.599609 C 177.699219 147.599579 163.499573 165.699219 132.599609 165.699219 L 118.099609 165.699219 Z"/></svg>';
 
 function getProjectData(projectID) {
 	// Get project data from database
@@ -435,6 +437,10 @@ function projectLinkConstructor(linkData) {
 				? linkData.collaboratorName
 				: "Collaborator";
 			projectLinkIcon = $(collaboratorSVG);
+			break;
+		case "devpost":
+			name = "Devpost";
+			projectLinkIcon = $(devpostSVG);
 			break;
 	}
 

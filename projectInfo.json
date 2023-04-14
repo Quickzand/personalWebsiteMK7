@@ -9,13 +9,17 @@
 			},
 			{
 				"type": "collaborator",
-				"href": "https://api.github.com/repos/Dequeue/dequeue",
+				"href": "https://www.sethlenhof.com",
 				"collaboratorName": "Seth Lenhof"
 			},
 			{
 				"type": "collaborator",
 				"href": "https://alexharris.design",
 				"collaboratorName": "Alex Harris"
+			},
+			{
+				"type": "devpost",
+				"href": "https://devpost.com/software/dequeue-m6ocaz"
 			}
 		],
 		"description": "Dequeue is an app that allows you to control your computer from your phone, made by myself and Ayden Colby! It has a home screen allowing you to control more general things like volume, music, or terminal commands, and a section which allows you to create your own shortcuts and scripts to run on your computer remotely. This is my first time working with a mobile centric design and my first time using progressive web apps.",

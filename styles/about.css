@@ -54,7 +54,7 @@
 #aboutHeaderText {
 	position: absolute;
 	left: 25%;
-	font-size: 2.2rem;
+	font-size: 1.75rem;
 	transform: translate(-50%, -50%);
 	width: 100%;
 	line-height: 1.6;
@@ -314,7 +314,6 @@
 	font-family: var(--header-font);
 	display: flex;
 	flex-direction: row;
-
 	align-items: center;
 }
 
@@ -326,7 +325,7 @@
 	margin-right: 1rem;
 }
 
-#aboutPopoverSubtitle {
+#aboutPopoverDescription {
 	font-size: 3rem;
 	font-weight: 200;
 	margin-left: 4.5rem;

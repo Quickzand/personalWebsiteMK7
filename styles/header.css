@@ -30,7 +30,7 @@ header {
 	background-position: 0 0;
 	position: relative;
 	/* inset shadow */
-	box-shadow: inset 0 0 100rem 0 var(--main-background-color);
+	box-shadow: inset 0 0 500px 100px var(--main-background-color);
 	overflow: hidden;
 	pointer-events: none;
 }
@@ -76,7 +76,7 @@ header {
 	text-align: center;
 	pointer-events: none;
 	white-space: nowrap;
-	position: relative;
+	position: absolute;
 	left: 50%;
 	transform: translateX(-50%);
 	color: var(--main-font-color);

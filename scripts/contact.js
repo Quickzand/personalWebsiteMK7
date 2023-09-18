@@ -12,7 +12,6 @@ $("input[type='text']").on("blur", function () {
 $("input[type='text']").on("change", function () {
 	if ($(this).val()) {
 		$(this).parent().addClass("valueContained");
-		console.log("HERE");
 	} else {
 		$(this).parent().removeClass("valueContained");
 	}
@@ -20,7 +19,6 @@ $("input[type='text']").on("change", function () {
 
 // ensures the email field is valid email using regex
 $("input[name='email']").on("change", function () {
-	console.log("HERE");
 	var email = $(this).val();
 	var emailRegex =
 		/^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
@@ -33,5 +31,28 @@ $("input[name='email']").on("change", function () {
 	} else {
 		$(this).parent().removeClass("invalid");
 		$(this).parent().removeClass("valid");
+	}
+});
+
+$("#contactSubmitButton").on("click", function () {
+	var email = $("input[name='email']").val();
+	var message = $("textarea[name='message']").val();
+
+	if (email.length > 0 && message.length > 0) {
+		// Send the data to email.php
+		$.ajax({
+			type: "POST",
+			url: "scripts/email.php",
+			data: {
+				email: email,
+				message: message,
+			},
+			success: function (data) {
+				console.log("SUCCESS: ", data);
+			},
+			error: function (data) {
+				console.log("ERROR: ", data);
+			},
+		});
 	}
 });

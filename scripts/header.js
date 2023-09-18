@@ -167,9 +167,10 @@ $(window).on("resize", function () {
 	createCells(colCount, rowCount, true);
 });
 
-const cellSize = $(window).width() <= 750 ? 100 : 125;
+const cellSize = $(window).width() <= 750 ? 75 : 150;
 
 var cellGap = 0.4;
+
 
 var colCount = Math.ceil($(window).width() / cellSize);
 var rowCount = Math.ceil($(window).height() / cellSize);

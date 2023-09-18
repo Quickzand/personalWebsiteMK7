@@ -76,6 +76,8 @@ function buildColorPalettes() {
 		applyColorPalette(
 			colorPalettes.find((palette) => palette.name == colorPalette)
 		);
+	} else {
+		applyColorPalette(colorPalettes[0]);
 	}
 }
 

@@ -109,6 +109,38 @@ $(window).on("scroll", function () {
 
 const aboutData = [
 	{
+		name: "Amazon",
+		timeline: "June 2023 - August 2023",
+		description: "Software Development Engineer Intern",
+		shortDescription:
+			"Created react-based app to collect audio data from users",
+		logo: "images/amazon.png",
+		image: "images/test.jpg",
+		cards: [
+			{
+				content:
+					" Designed and implemented dynamic storage scaling for AI training platform utilizing Shell Scripting, CloudFormation, and Lambda Functions",
+			},
+			{
+				content:
+					"Worked with AWS services to preform rolling deployment of new EC2 based service to over 6,000 users",
+			},
+			{
+				content:
+					"Wrote scripts in NodeJS for data aggregation, sanitation, and analysis",
+			},
+		],
+		tags: [
+			"CloudFormation",
+			"AWS",
+			"NodeJS",
+			"Shell Scripting",
+			"Lambda",
+			"EC2",
+		],
+		location: $("#experience .aboutCardsContainer"),
+	},
+	{
 		name: "SightPlan",
 		timeline: "October 2022 - Present",
 		description: "IOS Development Intern",
@@ -182,6 +214,7 @@ function openAboutPopover(data) {
 	$("#aboutPopoverTitleText").text(data.name);
 	$("#aboutPopoverBackground").attr("src", data.image);
 	$("#aboutPopoverTitleIcon").attr("src", data.logo);
+	$("#aboutPopoverDescription").text(data.description);
 
 	$("#aboutPopoverCards").empty();
 

@@ -3,623 +3,639 @@
 @import url("https://fonts.googleapis.com/css2?family=Dongle:wght@300;400;700&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Nunito:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
 :root {
-	--main-background-color: var(--arc-palette-background);
-	/* --main-background-color: rgb(18, 18, 18); */
-	--outset-background-color: #222222;
-	--secondary-background-color: #010101;
-	--main-font-color: #fdfdfd;
-	--first-accent-color: #23d183;
-	--second-accent-color: #06ace8;
-	--main-gradient: linear-gradient(
-		135deg,
-		var(--first-accent-color) 0%,
-		var(--second-accent-color) 100%
-	);
-	--main-looping-gradient: linear-gradient(
-		to right,
-		var(--first-accent-color),
-		var(--second-accent-color),
-		var(--first-accent-color),
-		var(--second-accent-color)
-	);
+    --main-background-color: var(--arc-palette-background);
+    /* --main-background-color: rgb(18, 18, 18); */
+    --outset-background-color: #222222;
+    --secondary-background-color: #010101;
+    --main-font-color: #fdfdfd;
+    --first-accent-color: #23d183;
+    --second-accent-color: #06ace8;
+    --main-gradient: linear-gradient(135deg,
+            var(--first-accent-color) 0%,
+            var(--second-accent-color) 100%);
+    --main-looping-gradient: linear-gradient(to right,
+            var(--first-accent-color),
+            var(--second-accent-color),
+            var(--first-accent-color),
+            var(--second-accent-color));
 
-	--main-looping-separated-gradient: linear-gradient(
-		to right,
-		var(--first-accent-color),
-		var(--second-accent-color) 50%,
-		var(--first-accent-color) 50%,
-		var(--second-accent-color)
-	);
-	--first-glossy-accent-color: rgba(35, 209, 131, 0.5);
-	--second-glossy-accent-color: rgba(6, 172, 232, 0.5);
-	--title-font: "Share Tech Mono", monospace;
-	--subheader-font: "Roboto", sans-serif;
-	--header-font: "Poppins", sans-serif;
-	--body-font: "Nunito", sans-serif;
-	--main-glassy-background-color: rgba(18, 18, 18, 0.8);
-	--inset-glassy-background-color: rgba(9, 9, 9, 0.8);
-	--main-text-shadow-color: rgba(0, 0, 0, 0.5);
-	--animation-speed-multiplier: 1;
-	--animation-offset: 0;
-	--mobile-top-safe-area: 0px;
-	--error-color: #ff7555;
-	--nav-margin-padding: 4rem;
-	--floating-button-padding: 10px;
-	--floating-button-stroke-width: 15px;
+    --main-looping-separated-gradient: linear-gradient(to right,
+            var(--first-accent-color),
+            var(--second-accent-color) 50%,
+            var(--first-accent-color) 50%,
+            var(--second-accent-color));
+    --first-glossy-accent-color: rgba(35, 209, 131, 0.5);
+    --second-glossy-accent-color: rgba(6, 172, 232, 0.5);
+    --title-font: "Share Tech Mono", monospace;
+    --subheader-font: "Roboto", sans-serif;
+    --header-font: "Poppins", sans-serif;
+    --body-font: "Nunito", sans-serif;
+    --main-glassy-background-color: rgba(18, 18, 18, 0.8);
+    --inset-glassy-background-color: rgba(9, 9, 9, 0.8);
+    --main-text-shadow-color: rgba(0, 0, 0, 0.5);
+    --animation-speed-multiplier: 1;
+    --animation-offset: 0;
+    --mobile-top-safe-area: 0px;
+    --error-color: #ff7555;
+    --nav-margin-padding: 4rem;
+    --floating-button-padding: 10px;
+    --floating-button-stroke-width: 15px;
 }
 
 body {
-	margin: 0;
-	padding: 0;
-	background-color: var(--main-background-color);
-	color: var(--main-font-color);
-	padding-bottom: 50vh;
-	width: calc(100vw - calc(var(--nav-margin-padding) * 2));
-	font-family: var(--body-font);
-	overflow-x: hidden;
-	min-height: calc(100% + env(safe-area-inset-top));
-	padding: env(safe-area-inset-top) env(safe-area-inset-right)
-		env(safe-area-inset-bottom) env(safe-area-inset-left);
+    margin: 0;
+    padding: 0;
+    background-color: var(--main-background-color);
+    color: var(--main-font-color);
+    padding-bottom: 50vh;
+    width: calc(100vw - calc(var(--nav-margin-padding) * 2));
+    font-family: var(--body-font);
+    overflow-x: hidden;
+    min-height: calc(100% + env(safe-area-inset-top));
+    padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
 }
 
 .gradientText,
 .eventTime {
-	background: var(--main-gradient);
-	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
-	-moz-background-clip: text;
-	-moz-text-fill-color: transparent;
+    background: var(--main-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -moz-background-clip: text;
+    -moz-text-fill-color: transparent;
 }
 
 .noScroll {
-	overflow: hidden;
+    overflow: hidden;
 }
 
 html {
-	scroll-behavior: auto !important;
+    scroll-behavior: auto !important;
 }
 
 .bodySection {
-	z-index: 2;
-	position: relative;
-	background-color: var(--main-background-color);
-	margin-left: var(--nav-margin-padding);
+    z-index: 2;
+    position: relative;
+    background-color: var(--main-background-color);
+    margin-left: var(--nav-margin-padding);
 }
 
 nav {
-	position: fixed;
-	top: 50%;
-	right: 0;
-	transform: translateY(-50%);
-	z-index: 100;
-	transition: transform 0.5s ease-in-out;
+    position: fixed;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    z-index: 100;
+    transition: transform 0.5s ease-in-out;
 }
 
 nav.hidden {
-	transform: translateX(100%) translateY(-50%);
+    transform: translateX(100%) translateY(-50%);
 }
 
 .navButton {
-	display: flex;
-	flex-direction: row-reverse;
-	justify-content: center;
-	align-items: center;
-	font-family: var(--header-font);
-	font-size: 2.2rem;
-	padding-bottom: 1rem;
-	padding-top: 1rem;
-	cursor: pointer;
-	border-right: solid 0rem white;
-	transition: border 0.15s ease-in-out, color 0.15s ease-in-out;
-	font-weight: bolder;
-	animation-name: bounceIn;
-	animation-duration: 0.15s;
-	animation-delay: calc(calc(var(--index) * 0.5s) + 5s);
-	animation-timing-function: ease-in;
-	animation-fill-mode: forwards;
-	transform: translateX(100%);
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    align-items: center;
+    font-family: var(--header-font);
+    font-size: 2.2rem;
+    padding-bottom: 1rem;
+    padding-top: 1rem;
+    cursor: pointer;
+    border-right: solid 0rem white;
+    transition: border 0.15s ease-in-out, color 0.15s ease-in-out;
+    font-weight: bolder;
+    animation-name: bounceIn;
+    animation-duration: 0.15s;
+    animation-delay: calc(calc(var(--index) * 0.5s) + 5s);
+    animation-timing-function: ease-in;
+    animation-fill-mode: forwards;
+    transform: translateX(100%);
 }
 
 nav.scrolled .navButton {
-	animation-delay: calc(calc(var(--index) * 0.5s) + 0s);
+    animation-delay: calc(calc(var(--index) * 0.5s) + 0s);
 }
 
 @keyframes bounceIn {
-	0% {
-		transform: translateX(100%);
-		opacity: 0;
-		border-right-width: 0;
-	}
-	90% {
-		transform: translateX(-5%);
-		opacity: 1;
-		border-right-width: inherit;
-	}
-	100% {
-		transform: translateX(0%);
-	}
+    0% {
+        transform: translateX(100%);
+        opacity: 0;
+        border-right-width: 0;
+    }
+
+    90% {
+        transform: translateX(-5%);
+        opacity: 1;
+        border-right-width: inherit;
+    }
+
+    100% {
+        transform: translateX(0%);
+    }
 }
 
 .navButtonText {
-	width: 100%;
-	right: 0%;
-	position: relative;
-	animation-name: navTextAnimation;
-	animation-duration: 0.25s;
-	animation-timing-function: ease-in-out;
-	animation-delay: calc(var(--animation-delay) * 0.5s);
-	animation-fill-mode: forwards;
-	padding-right: 0rem;
-	text-align: right;
-	transition: padding 0.25s ease-in-out, transform 0.25s ease-in-out;
+    width: 100%;
+    right: 0%;
+    position: relative;
+    animation-name: navTextAnimation;
+    animation-duration: 0.25s;
+    animation-timing-function: ease-in-out;
+    animation-delay: calc(var(--animation-delay) * 0.5s);
+    animation-fill-mode: forwards;
+    padding-right: 0rem;
+    text-align: right;
+    transition: padding 0.25s ease-in-out, transform 0.25s ease-in-out;
 }
 
 .navButton:hover {
-	border-right: solid 0.5rem var(--second-accent-color);
-	color: var(--second-accent-color);
+    border-right: solid 0.5rem var(--second-accent-color);
+    color: var(--second-accent-color);
+}
+
+#backgroundFrostedGlass {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* background-color: var(--main-glassy-background-color); */
+    backdrop-filter: blur(0.25rem);
 }
 
 .navButton:hover .navButtonText {
-	padding-right: 1.5rem;
+    padding-right: 1.5rem;
 }
 
 .navButton.selected {
-	border-right: solid 0.5rem var(--first-accent-color);
-	color: var(--first-accent-color);
+    border-right: solid 0.5rem var(--first-accent-color);
+    color: var(--first-accent-color);
 }
 
 .navButton svg {
-	height: 3rem;
-	padding-right: 0.5rem;
-	fill: var(--main-font-color);
-	filter: drop-shadow(0.2rem 0.2rem var(--main-text-shadow-color));
-	margin-right: 0.5rem;
-	object-fit: contain;
-	will-change: transform;
-	transition: transform 0.25s ease-in-out 0.25s, opacity 0.25s ease-in-out;
+    height: 3rem;
+    padding-right: 0.5rem;
+    fill: var(--main-font-color);
+    filter: drop-shadow(0.2rem 0.2rem var(--main-text-shadow-color));
+    margin-right: 0.5rem;
+    object-fit: contain;
+    will-change: transform;
+    transition: transform 0.25s ease-in-out 0.25s, opacity 0.25s ease-in-out;
 }
 
 .navButton.selected svg {
-	fill: var(--first-accent-color);
-	/* position: absolute; */
-	margin-right: -1.5rem;
+    fill: var(--first-accent-color);
+    /* position: absolute; */
+    margin-right: -1.5rem;
 }
 
 .navButton:hover svg {
-	fill: var(--second-accent-color);
+    fill: var(--second-accent-color);
 }
 
 nav.scrolled svg {
-	transform: translateX(0%);
+    transform: translateX(0%);
 }
 
 nav:not(.scrolled) svg,
 nav:hover svg {
-	transform: translateX(200%);
-	opacity: 0;
+    transform: translateX(200%);
+    opacity: 0;
 }
 
 /* When scrolled more than 100 px */
 nav.scrolled:not(:hover) .navButtonText {
-	animation-name: navTextOutAnimation;
-	animation-duration: 0.25s;
-	animation-timing-function: ease-in-out;
-	animation-delay: calc(var(--animation-delay) * 0.5s);
-	animation-fill-mode: forwards;
+    animation-name: navTextOutAnimation;
+    animation-duration: 0.25s;
+    animation-timing-function: ease-in-out;
+    animation-delay: calc(var(--animation-delay) * 0.5s);
+    animation-fill-mode: forwards;
 }
 
 nav .navButton.selected {
-	color: var(--first-accent-color);
-	padding-right: 3rem;
-	border-right: 0.5rem solid var(--first-accent-color);
+    color: var(--first-accent-color);
+    padding-right: 3rem;
+    border-right: 0.5rem solid var(--first-accent-color);
 }
 
 @keyframes navTextAnimation {
-	0% {
-		right: -100%;
-	}
+    0% {
+        right: -100%;
+    }
 
-	90% {
-		right: 10%;
-	}
+    90% {
+        right: 10%;
+    }
 
-	100% {
-		right: -20%;
-	}
+    100% {
+        right: -20%;
+    }
 }
 
 @keyframes navTextOutAnimation {
-	0% {
-		right: 0%;
-	}
+    0% {
+        right: 0%;
+    }
 
-	100% {
-		right: -150%;
-	}
+    100% {
+        right: -150%;
+    }
 }
 
 .shadowEffect:not(#name),
 h3 {
-	position: relative;
-	display: inline-block;
-	line-height: 1;
-	inset: 1px;
+    position: relative;
+    display: inline-block;
+    line-height: 1;
+    inset: 1px;
 }
 
 .shadowEffect::after,
 h3::after {
-	/* make the content the content of the parent  */
-	content: attr(data-text);
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	line-height: 1;
-	/* linear gradient from first to second accent color */
-	background: linear-gradient(
-		90deg,
-		var(--first-accent-color) 0%,
-		var(--second-accent-color) 100%
-	);
-	display: inline-block;
-	/* CLip background to text */
-	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
-	font-family: var(--header-font);
-	transform: scaleX(1.02) scaleY(1.02) translateY(0%);
-	z-index: -1;
-	clip-path: inset(1px);
+    /* make the content the content of the parent  */
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    line-height: 1;
+    /* linear gradient from first to second accent color */
+    background: linear-gradient(90deg,
+            var(--first-accent-color) 0%,
+            var(--second-accent-color) 100%);
+    display: inline-block;
+    /* CLip background to text */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-family: var(--header-font);
+    transform: scaleX(1.02) scaleY(1.02) translateY(0%);
+    z-index: -1;
+    clip-path: inset(1px);
 }
 
 .header {
-	font-size: 4rem;
-	font-family: var(--header-font);
-	text-align: left;
-	/* margin-left: 2rem; */
-	font-weight: bold;
-	margin-bottom: 1rem;
-	margin-top: 1rem;
-	/* border-right: solid var(--main-font-color) 2.5px; */
-	border-bottom: solid var(--main-font-color) 2.5px;
-	padding: 1rem;
-	border-radius: 2.5px;
-	margin-bottom: 50px;
-	margin-top: 50px;
-	position: relative;
-	width: calc(100% - 1rem);
+    font-size: 4rem;
+    font-family: var(--header-font);
+    text-align: left;
+    /* margin-left: 2rem; */
+    font-weight: bold;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+    /* border-right: solid var(--main-font-color) 2.5px; */
+    border-bottom: solid var(--main-font-color) 2.5px;
+    padding: 1rem;
+    border-radius: 2.5px;
+    margin-bottom: 50px;
+    margin-top: 50px;
+    position: relative;
+    width: calc(100vw - 2rem);
 }
 
 .header.reversed {
-	border-right: none;
-	/* border-left: solid var(--main-font-color) 2.5px; */
-	/* padding-left: 1rem; */
-	text-align: right;
+    border-right: none;
+    /* border-left: solid var(--main-font-color) 2.5px; */
+    /* padding-left: 1rem; */
+    text-align: right;
 }
 
 .header:nth-of-type(even) {
-	border-right: none;
-	/* border-left: solid var(--main-font-color) 2.5px; */
-	/* padding-left: 1rem; */
-	text-align: right;
+    border-right: none;
+    /* border-left: solid var(--main-font-color) 2.5px; */
+    /* padding-left: 1rem; */
+    text-align: right;
 }
 
 .header::before {
-	background: var(--main-gradient);
-	/* background-position: 000% 0; */
-	background-size: 100% 100%;
-	/* background-repeat: no-repeat; */
-	/* animation: headerBG 5s linear infinite; */
-	content: "";
-	position: absolute;
-	width: 100%;
-	left: 0;
-	height: 100%;
-	opacity: 0.5;
-	z-index: -1;
-	top: 0;
-	/* transform: translate(-10px, 15px); */
-	filter: blur(30px);
-	clip-path: polygon(-500% 100%, 500% 100%, 500% 500%, -500% 500%);
+    background: var(--main-gradient);
+    /* background-position: 000% 0; */
+    background-size: 100% 100%;
+    /* background-repeat: no-repeat; */
+    /* animation: headerBG 5s linear infinite; */
+    content: "";
+    position: absolute;
+    width: 100%;
+    left: 0;
+    height: 100%;
+    opacity: 0.5;
+    z-index: -1;
+    top: 0;
+    /* transform: translate(-10px, 15px); */
+    filter: blur(30px);
+    clip-path: polygon(-500% 100%, 500% 100%, 500% 500%, -500% 500%);
 }
 
 @keyframes headerBG {
-	0% {
-		background-position: 0% 0;
-	}
+    0% {
+        background-position: 0% 0;
+    }
 
-	100% {
-		background-position: 100% 0;
-	}
+    100% {
+        background-position: 100% 0;
+    }
 }
 
 #mobileNav {
-	display: none;
+    display: none;
 }
 
 #socials {
-	position: fixed;
-	bottom: 0px;
-	left: 0px;
-	padding: var(--floating-button-padding);
-	background-image: linear-gradient(
-		180deg,
-		rgba(0, 0, 0, 0) 0%,
-		var(--main-glassy-background-color) 90%
-	);
-	background-size: 100% 0%;
-	background-repeat: no-repeat;
-	background-position: bottom;
-	z-index: 100;
-	transition: all 0.25s ease-in-out;
-	transform: translateY(100%);
-	animation: animateInSocials 0.25s ease-in-out forwards 6s;
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    padding: var(--floating-button-padding);
+    background-image: linear-gradient(180deg,
+            rgba(0, 0, 0, 0) 0%,
+            var(--main-glassy-background-color) 90%);
+    background-size: 100% 0%;
+    background-repeat: no-repeat;
+    background-position: bottom;
+    z-index: 100;
+    transition: all 0.25s ease-in-out;
+    transform: translateY(100%);
+    animation: animateInSocials 0.25s ease-in-out forwards 6s;
 }
 
 #socials.scrolled {
-	animation-delay: 0s;
+    animation-delay: 0s;
 }
 
 .socialButton {
-	width: 3rem;
-	aspect-ratio: 1;
-	position: absolute;
-	top: 0;
-	left: 0;
-	cursor: pointer;
-	transition: all 0.25s ease-in-out;
-	--accentColor: var(--first-accent-color);
-	padding-left: 0.5rem;
+    width: 3rem;
+    aspect-ratio: 1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    cursor: pointer;
+    transition: all 0.25s ease-in-out;
+    --accentColor: var(--first-accent-color);
+    padding-left: 0.5rem;
 }
 
 #socialsIcon {
-	width: 3rem;
-	aspect-ratio: 1;
-	top: 0;
-	left: 0;
-	stroke: var(--main-font-color);
-	stroke-width: 2px;
-	/* padding: 1rem; */
-	transition: all 0.5s ease-in-out;
+    width: 3rem;
+    aspect-ratio: 1;
+    top: 0;
+    left: 0;
+    stroke: var(--main-font-color);
+    stroke-width: 2px;
+    /* padding: 1rem; */
+    transition: all 0.5s ease-in-out;
 }
 
 #socials.scrolled .socialButton {
-	opacity: 0;
+    opacity: 0;
 }
 
 #socials:not(.scrolled) .socialButton,
 #socials:hover .socialButton {
-	transform: translateX(calc(100% * var(--index) + 1rem)) translateY(25%);
-	opacity: 1;
+    transform: translateX(calc(100% * var(--index) + 1rem)) translateY(25%);
+    opacity: 1;
 }
 
 #socials:hover #socialsIcon,
 #socials:not(.scrolled) #socialsIcon {
-	fill: var(--main-font-color);
-	transform: rotate(360deg);
+    fill: var(--main-font-color);
+    transform: rotate(360deg);
 }
 
 #socials.scrolled:hover {
-	/* shadow coming up from bottom */
-	width: 100vw;
+    /* shadow coming up from bottom */
+    width: 100vw;
 
-	background-size: 100% 100%;
+    background-size: 100% 100%;
 }
 
 .socialButton svg {
-	fill: var(--main-font-color);
-	width: 2rem;
-	height: 2rem;
-	transition: fill 0.25s ease-in-out;
+    fill: var(--main-font-color);
+    width: 2rem;
+    height: 2rem;
+    transition: fill 0.25s ease-in-out;
 }
 
 .socialButton:hover svg {
-	fill: var(--accentColor) !important;
+    fill: var(--accentColor) !important;
 }
 
 @keyframes animateInSocials {
-	0% {
-	}
+    0% {}
 
-	100% {
-		transform: translateY(0%);
-	}
+    100% {
+        transform: translateY(0%);
+    }
 }
 
 @supports (padding: max(0px)) {
-	body,
-	header,
-	footer {
-		padding-left: min(0vmin, env(safe-area-inset-left));
-		padding-right: min(0vmin, env(safe-area-inset-right));
-	}
+
+    body,
+    header,
+    footer {
+        padding-left: min(0vmin, env(safe-area-inset-left));
+        padding-right: min(0vmin, env(safe-area-inset-right));
+    }
 }
 
 #imageModal {
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100vw;
-	height: 100vh;
-	backdrop-filter: blur(5px);
-	-webkit-backdrop-filter: blur(5px);
-	z-index: 1000;
-	justify-content: center;
-	align-items: center;
-	display: flex;
-	transition: backdrop-filter 0.25s ease-in-out,
-		-webkit-backdrop-filter 0.25s ease-in-out;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    transition: backdrop-filter 0.25s ease-in-out,
+        -webkit-backdrop-filter 0.25s ease-in-out;
 }
 
 #imageModalContent {
-	display: flex;
-	flex-direction: row;
+    display: flex;
+    flex-direction: row;
 }
 
 #imageModalImage {
-	max-width: calc(100vw - 100px);
-	max-height: calc(100vh - 100px);
-	object-fit: contain;
-	box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.95);
+    max-width: calc(100vw - 100px);
+    max-height: calc(100vh - 100px);
+    object-fit: contain;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.95);
 }
 
 #imageModalCloseButton {
-	width: 50px;
-	height: 50px;
-	border-radius: 50%;
-	line-height: 1;
-	background-color: var(--outset-background-color);
-	display: grid;
-	place-items: center;
-	font-size: 30px;
-	font-family: var(--title-font);
-	cursor: pointer;
-	transform: translateX(-50%);
-	transition: all 0.25s ease-in-out;
-	/* outline: 1px solid var(--main-font-color); */
-	box-shadow: 0px 0px 10px 10px rgba(0, 0, 0, 0.5);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    line-height: 1;
+    background-color: var(--outset-background-color);
+    display: grid;
+    place-items: center;
+    font-size: 30px;
+    font-family: var(--title-font);
+    cursor: pointer;
+    transform: translateX(-50%);
+    transition: all 0.25s ease-in-out;
+    /* outline: 1px solid var(--main-font-color); */
+    box-shadow: 0px 0px 10px 10px rgba(0, 0, 0, 0.5);
 }
 
 #imageModalCloseButton:hover {
-	background-color: var(--first-accent-color);
-	color: var(--outset-background-color);
+    background-color: var(--first-accent-color);
+    color: var(--outset-background-color);
 }
 
 #imageModal:not(.open) {
-	opacity: 0;
-	pointer-events: none;
-	backdrop-filter: blur(0px);
-	-webkit-backdrop-filter: blur(0px);
+    opacity: 0;
+    pointer-events: none;
+    backdrop-filter: blur(0px);
+    -webkit-backdrop-filter: blur(0px);
 }
 
 @media only screen and (max-width: 720px) {
-	:root {
-		--mobile-top-safe-area: 50px;
-	}
-	html {
-		font-size: 7px;
-	}
-	nav {
-		display: none;
-	}
+    :root {
+        --mobile-top-safe-area: 50px;
+    }
 
-	body {
-		width: 100vw;
-		padding: 0;
-		margin: 0;
-	}
+    html {
+        font-size: 7px;
+    }
 
-	#mobileNav {
-		display: flex;
-		position: fixed;
-		bottom: 0;
-		background-image: linear-gradient(
-			180deg,
-			rgba(0, 0, 0, 0) 30%,
-			rgba(0, 0, 0, 0.9) 130%
-		);
-		width: calc(100vw - 2rem);
-		padding-right: 1rem;
-		padding-left: 1rem;
-		height: 5rem;
-		z-index: 100;
-		padding-top: 2rem;
-		padding-bottom: 2rem;
-		justify-content: space-around;
-		align-items: center;
-		transition: transform 0.5s ease-out;
-	}
+    nav {
+        display: none;
+    }
 
-	#mobileNav.hidden {
-		transform: translateY(100%);
-	}
+    body {
+        width: 100vw;
+        padding: 0;
+        margin: 0;
+    }
 
-	#mobileNav svg {
-		height: 100%;
-		fill: var(--main-font-color);
-	}
+    #socials {
+        display: none;
+    }
 
-	.mobileNavButton {
-		display: inline-block;
-		height: 100%;
-	}
+    #mobileNav {
+        display: flex;
+        position: fixed;
+        bottom: 10px;
+        -webkit-backdrop-filter: blur(2rem);
+        box-shadow: inset 1px 1px 0px 1px rgba(255, 255, 255, 0.25),
+            inset -1px -1px 0px 1px rgba(255, 255, 255, 0.25);
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: var(--main-glassy-background-color);
+        border-radius: 4rem;
+        width: calc(100vw - 10rem);
+        padding-right: 1rem;
+        padding-left: 1rem;
+        height: 5rem;
+        z-index: 100;
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+        justify-content: space-around;
+        align-items: center;
+        transition: transform 0.5s ease-out;
+    }
 
-	.bodySection {
-		margin-left: 0;
-		margin-right: 0;
-	}
+    #mobileNav.hidden {
+        transform: translateY(100%);
+    }
+
+    #mobileNav svg {
+        height: 100%;
+        fill: var(--main-font-color);
+    }
+
+    .mobileNavButton {
+        display: inline-block;
+        height: 100%;
+    }
+
+
+
+    .bodySection {
+        margin-left: 0;
+        margin-right: 0;
+    }
 }
+
+.mobileNavButton.selected svg {
+    fill: var(--first-accent-color) !important;
+}
+
 
 #palettesIcon {
-	position: absolute;
-	top: 0;
-	right: 0;
-	width: 3rem;
-	fill: transparent;
-	stroke: var(--main-font-color);
-	stroke-width: var(--floating-button-stroke-width);
-	transition: all 0.25s ease-in-out;
-	padding: var(--floating-button-padding);
-	cursor: pointer;
-	transform: translateY(-100%);
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 3rem;
+    fill: transparent;
+    stroke: var(--main-font-color);
+    stroke-width: var(--floating-button-stroke-width);
+    transition: all 0.25s ease-in-out;
+    padding: var(--floating-button-padding);
+    cursor: pointer;
+    transform: translateY(-100%);
 }
 
-#colorPalettes.open > #palettesIcon {
-	fill: var(--main-font-color);
-	stroke-width: 0px;
+#colorPalettes.open>#palettesIcon {
+    fill: var(--main-font-color);
+    stroke-width: 0px;
 }
 
 #colorPalettes.open {
-	transform: translateY(0);
+    transform: translateY(0);
 }
 
 #colorPalettes {
-	height: 100px;
-	width: 100vw;
-	background-color: var(--main-glassy-background-color);
-	position: fixed;
-	bottom: 0;
-	transition: transform 0.5s ease-in-out;
-	z-index: 1000;
-	backdrop-filter: blur(15px);
-	-webkit-backdrop-filter: blur(15px);
+    height: 100px;
+    width: 100vw;
+    background-color: var(--main-glassy-background-color);
+    position: fixed;
+    bottom: 0;
+    transition: transform 0.5s ease-in-out;
+    z-index: 1000;
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
 }
 
 #colorPalettes:not(.open) {
-	transform: translateY(100%);
+    transform: translateY(100%);
 }
 
 #colorPalettesList {
-	display: flex;
-	justify-content: space-around;
-	align-items: center;
-	height: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 100%;
 }
 
 .colorPalette {
-	background-image: linear-gradient(
-		135deg,
-		var(--preview-color-1),
-		var(--preview-color-2)
-	);
-	width: 3.5rem;
-	height: 3.5rem;
-	position: relative;
-	cursor: pointer;
+    background-image: linear-gradient(135deg,
+            var(--preview-color-1),
+            var(--preview-color-2));
+    width: 3.5rem;
+    height: 3.5rem;
+    position: relative;
+    cursor: pointer;
 }
 
 .colorPalette::after {
-	content: attr(data-palette-name);
-	position: absolute;
-	bottom: 0;
-	left: 50%;
-	transform: translateX(-50%) translateY(100%);
-	font-family: var(--title-font);
-	text-align: center;
-	white-space: nowrap;
-	font-size: 0.85rem;
+    content: attr(data-palette-name);
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%) translateY(100%);
+    font-family: var(--title-font);
+    text-align: center;
+    white-space: nowrap;
+    font-size: 0.85rem;
 }
 
 .colorPalette.active {
-	box-shadow: 0px 0px 25px 5px var(--first-accent-color);
+    box-shadow: 0px 0px 25px 5px var(--first-accent-color);
 }
+
+/* Disable the scroll bar */

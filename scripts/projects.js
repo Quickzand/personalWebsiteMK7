@@ -1,197 +1,18 @@
-const projects = [
-	{
-		id: "dequeue",
-		name: "Dequeue",
-		description:
-			"Dequeue is an app that allows you to control your computer from your phone, made by myself and Ayden Colby! It has a home screen allowing you to control more general things like volume, music, or terminal commands, and a section which allows you to create your own shortcuts and scripts to run on your computer remotely. This is my first time working with a mobile centric design and my first time using progressive web apps.",
-		preview: "images/projects/dequeuePreview.png",
-		tags: [
-			{
-				name: "Electron",
-				icon: "images/tags/electron.svg",
-			},
-			{
-				name: "Node.js",
-				icon: "images/tags/node.svg",
-			},
-			{
-				name: "Python",
-				icon: "images/tags/python.svg",
-			},
-			{
-				name: "React Native",
-				icon: "images/tags/pwa.svg",
-			},
-		],
-		links: [
-			{
-				type: "website",
-				text: "Website",
-				url: "www.beaned.com",
-			},
-			{
-				type: "collaborator",
-				text: "Ayden Colby",
-				url: "www.aydencolby.com",
-			},
-			{
-				type: "github",
-				text: "GitHub",
-				url: "www.github.com/",
-			},
-		],
-		images: [
-			"images/projects/dequeue/dequeue1.png",
-			"images/projects/dequeue/dequeue6.png",
-			"images/projects/dequeue/dequeue2.png",
-			"images/projects/dequeue/dequeue3.png",
-			"images/projects/dequeue/dequeue4.png",
-			"images/projects/dequeue/dequeue5.png",
-		],
+// Load in projects from getProjectCardInfo.php
+var projects = [];
+$.ajax({
+	url: "getProjectCardInfo.php",
+	type: "GET",
+	success: function (data) {
+		projects = JSON.parse(data);
+		projectsConstructor(JSON.parse(data));
 	},
-	{
-		name: "Homesub",
-		preview: "images/projects/homesubPreview.png",
-		id: "homesub",
-		description:
-			"Homesub is my coronavirus relief effort. As someone who has experienced firsthand how difficult it can be to be completely disconnected from the physical environment of school, I wanted to find a way to help my classmates through the rough transition period to online learning. Seeing the difficulties that computer science students had with writing their code from home, I created a website for them to write, test, and submit all of their code from. Homesub was my first time working with any sort of backend, and was a valuable learning experience when it came to working with server side development.",
-		tags: [
-			{
-				name: "HTML",
-			},
-			{
-				name: "CSS",
-			},
-			{
-				name: "JavaScript",
-			},
-			{
-				name: "PHP",
-			},
-			{
-				name: "mySQL",
-			},
-		],
+	error: function (data) {
+		console.log("ERROR: ", data);
 	},
-	{
-		name: "Wiki What",
-		preview: "images/projects/WWPreview.png",
-		id: "wikiWhat",
-		hasPassword: true,
-		description:
-			"Dequeue is a web application that allows users to create and join virtual queues for businesses. Users can create a queue for a business and share the link with others to join the queue. Users can also join a queue that has already been created by another user. Users can also view the status of their queue and the status of the queues they have joined. Dequeue was built using React, Node.js, Express, and MongoDB.",
-		tags: [
-			{
-				name: "HTML",
-			},
-			{
-				name: "CSS",
-			},
-			{
-				name: "JavaScript",
-			},
-			{
-				name: "Python",
-			},
-		],
-	},
-	{
-		name: "Wifi Panda",
-		preview: "images/projects/wifiPandaPreview.png",
-		id: "wifiPanda",
-		description:
-			"Dequeue is a web application that allows users to create and join virtual queues for businesses. Users can create a queue for a business and share the link with others to join the queue. Users can also join a queue that has already been created by another user. Users can also view the status of their queue and the status of the queues they have joined. Dequeue was built using React, Node.js, Express, and MongoDB.",
-		tags: [
-			{
-				name: "HTML",
-			},
-			{
-				name: "CSS",
-			},
-			{
-				name: "JavaScript",
-			},
-			{
-				name: "PHP",
-			},
-		],
-	},
-	{
-		name: "Meets Stories",
-		preview: "images/projects/meetsPreview.png",
-		hasPassword: true,
-		id: "meetsStories",
-		description:
-			"Dequeue is a web application that allows users to create and join virtual queues for businesses. Users can create a queue for a business and share the link with others to join the queue. Users can also join a queue that has already been created by another user. Users can also view the status of their queue and the status of the queues they have joined. Dequeue was built using React, Node.js, Express, and MongoDB.",
-		tags: [
-			{
-				name: "HTML",
-			},
-			{
-				name: "CSS",
-			},
-			{
-				name: "JavaScript",
-			},
-			{
-				name: "PHP",
-			},
-			{
-				name: "mySQL",
-			},
-		],
-	},
-	{
-		name: "Tankz",
-		preview: "images/projects/tankzPreview.png",
-		id: "tankz",
-		description:
-			"Dequeue is a web application that allows users to create and join virtual queues for businesses. Users can create a queue for a business and share the link with others to join the queue. Users can also join a queue that has already been created by another user. Users can also view the status of their queue and the status of the queues they have joined. Dequeue was built using React, Node.js, Express, and MongoDB.",
-		tags: [
-			{
-				name: "HTML",
-			},
-			{
-				name: "CSS",
-			},
-			{
-				name: "JavaScript",
-			},
-			{
-				name: "Node.js",
-			},
-			{
-				name: "mySQL",
-			},
-			{
-				name: "WebSockets",
-			},
-		],
-	},
-	{
-		name: "Host Directory",
-		preview: "images/projects/directoryPreview.png",
-		id: "hostDirectory",
-		description:
-			"Dequeue is a web application that allows users to create and join virtual queues for businesses. Users can create a queue for a business and share the link with others to join the queue. Users can also join a queue that has already been created by another user. Users can also view the status of their queue and the status of the queues they have joined. Dequeue was built using React, Node.js, Express, and MongoDB.",
-		tags: [
-			{
-				name: "HTML",
-			},
-			{
-				name: "CSS",
-			},
-			{
-				name: "JavaScript",
-			},
-			{
-				name: "PHP",
-			},
-		],
-	},
-];
-
+});
 function projectPreviewBuilder(projectInfo) {
+	if (!projectInfo) return;
 	var projectPreview = $("<div>").addClass("projectPreview");
 	var projectPreviewTopRow = $("<div>").addClass("projectPreviewTopRow");
 	var projectPreviewImage = $("<img>")
@@ -217,6 +38,9 @@ function projectPreviewBuilder(projectInfo) {
 				.attr("src", tag.icon)
 				.attr("alt", tag.name + " icon");
 			projectPreviewTag.text(tag.name);
+			if (tag.highlighted) {
+				projectPreviewTag.addClass("highlighted");
+			}
 			projectPreviewTag.append(projectPreviewTagIcon);
 			projectPreviewTagContainer.append(projectPreviewTag);
 		});
@@ -240,6 +64,7 @@ function projectsConstructor(projects) {
 	highlightedProject.append(highlightedProjectGlow);
 	$("#highlightedProjectSubContainer").append(highlightedProject);
 	for (var i = 1; i < projects.length; i++) {
+		if (!projects[i]) continue;
 		var projectPreview = projectPreviewBuilder(projects[i]);
 		projectPreview.css("--index", i);
 		projectsContainer.append(projectPreview);
@@ -256,8 +81,6 @@ $(window).scroll(function () {
 			$(".projectPreview").addClass("animateIn");
 		}
 });
-
-projectsConstructor(projects);
 
 function projectPopoverOpen(projectID) {
 	$("#projectPopover").addClass("open");
@@ -289,6 +112,9 @@ var collaboratorSVG =
 
 var devpostSVG =
 	'<svg viewBox="0 0 280 242" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path id="Logo" fill-rule="evenodd"  d="M 70.099609 242 L 0 120.699219 L 70.099609 -0.699219 L 210.199219 -0.699219 L 280.300781 120.699219 L 210.199219 242 L 70.099609 242 Z M 88.699219 194.300781 L 132.699219 194.300781 C 170.599197 194.300781 208.099609 172.499161 208.099609 120.699219 C 208.099609 66.799271 176.900726 47 134.800781 47 L 88.699219 47 L 88.699219 194.300781 Z M 118.099609 165.699219 L 118.099609 75.599609 L 133.699219 75.599609 C 164.899185 75.599609 177.799225 90.59964 177.699219 120.599609 C 177.699219 147.599579 163.499573 165.699219 132.599609 165.699219 L 118.099609 165.699219 Z"/></svg>';
+
+var documentSVG =
+	'<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M9.29289 1.29289C9.48043 1.10536 9.73478 1 10 1H18C19.6569 1 21 2.34315 21 4V20C21 21.6569 19.6569 23 18 23H6C4.34315 23 3 21.6569 3 20V8C3 7.73478 3.10536 7.48043 3.29289 7.29289L9.29289 1.29289ZM18 3H11V8C11 8.55228 10.5523 9 10 9H5V20C5 20.5523 5.44772 21 6 21H18C18.5523 21 19 20.5523 19 20V4C19 3.44772 18.5523 3 18 3ZM6.41421 7H9V4.41421L6.41421 7ZM7 13C7 12.4477 7.44772 12 8 12H16C16.5523 12 17 12.4477 17 13C17 13.5523 16.5523 14 16 14H8C7.44772 14 7 13.5523 7 13ZM7 17C7 16.4477 7.44772 16 8 16H16C16.5523 16 17 16.4477 17 17C17 17.5523 16.5523 18 16 18H8C7.44772 18 7 17.5523 7 17Z"/></svg>';
 
 function getProjectData(projectID) {
 	// Get project data from database
@@ -339,6 +165,7 @@ function attemptToGetProjectDataWithPass() {
 		.then(function (data) {
 			if (!data.error) {
 				startProjectLoad();
+				console.log(data);
 				insertProjectPopoverContent(data);
 				// Set timeout of 0.5s
 				setTimeout(() => {
@@ -371,6 +198,7 @@ function unsetIncorrectPassword() {
 }
 
 function insertProjectPopoverContent(data) {
+	console.log(data);
 	if (!data) return;
 	$("#projectName").text(data.name);
 	$("#projectTime").text(data.time);
@@ -380,7 +208,21 @@ function insertProjectPopoverContent(data) {
 		var projectLink = projectLinkConstructor(data.links[i]);
 		$("#projectLinks").append(projectLink);
 	}
-	$("#projectDescription").text(data.description);
+
+	// $("#projectDescription").text(data.description);
+	$("#projectDescription").empty();
+	data.sections = data.sections ? data.sections : [];
+	data.sections.forEach((section) => {
+		var sectionContainer = $("<div>").addClass("projectSectionContainer");
+		var sectionTitle = $("<div>")
+			.addClass("projectSectionTitle")
+			.text(section.title);
+		var sectionContent = $("<div>")
+			.addClass("sectionContent")
+			.text(section.content);
+		sectionContainer.append(sectionTitle, sectionContent);
+		$("#projectDescription").append(sectionContainer);
+	});
 	$("#projectImages").empty();
 	data.images = data.images ? data.images : [];
 	for (var i = 0; i < data.images.length; i++) {
@@ -400,7 +242,8 @@ function projectImageConstructor(src) {
 		.click(function () {
 			var distanceFromCenter = calculateImageDistanceFromCenter(this);
 			// If the image is not in the center, scroll to it and animate
-			console.log(this);
+			// Turn off snap scroll on projectImages div
+			$("#projectImages").css("scroll-snap-type", "none");
 			if (distanceFromCenter > 0.01) {
 				$("#projectImages").animate(
 					{
@@ -412,6 +255,10 @@ function projectImageConstructor(src) {
 					},
 					500
 				);
+				// Turn on snap scroll on projectImages div
+				setTimeout(() => {
+					$("#projectImages").css("scroll-snap-type", "x mandatory");
+				}, 500);
 			} else {
 				imageModalOpen(src);
 			}
@@ -429,7 +276,7 @@ function projectLinkConstructor(linkData) {
 
 	switch (linkData.type.toLowerCase()) {
 		case "github":
-			name = "GitHub";
+			name = linkData.name ? linkData.name : "GitHub";
 			projectLinkIcon = $(githubSVG);
 			break;
 		case "collaborator":
@@ -441,6 +288,10 @@ function projectLinkConstructor(linkData) {
 		case "devpost":
 			name = "Devpost";
 			projectLinkIcon = $(devpostSVG);
+			break;
+		case "document":
+			name = linkData.name ? linkData.name : "Document";
+			projectLinkIcon = $(documentSVG);
 			break;
 	}
 

@@ -1,9 +1,24 @@
 $(".navButton").each(function () {
-	$(this).click(function () {
+	$(this).on("click", function () {
+		console.log("Removing selection from: ", $(".navButton.selected"));
 		$(".navButton").removeClass("selected");
 		$(this).addClass("selected");
+		scrollToElement($(this).attr("data-navTo"));
 	});
 });
+
+function scrollToElement(id) {
+	// A bit hackey but subtracting one px for scroll to register new section
+	var pos = $("#" + id).position().top - 1;
+	console.log($("#" + id).position());
+	console.log("SCROLLING TO ", id, " AT ", pos);
+	$("html, body").animate(
+		{
+			scrollTop: pos,
+		},
+		1500
+	);
+}
 
 var navElement = $("nav");
 // Run nav scroll on scroll
@@ -27,19 +42,27 @@ $(".navButton").each(function (index) {
 $("#about").waypoint(function () {
 	$(".navButton").removeClass("selected");
 	$("#aboutNav").addClass("selected");
+	$(".mobileNavButton").removeClass("selected")
+	$("#mobileAboutNav").addClass("selected")
 });
 
 $("#skills").waypoint(function () {
 	$(".navButton").removeClass("selected");
 	$("#skillsNav").addClass("selected");
+	$(".mobileNavButton").removeClass("selected")
+	$("#mobileSkillsNav").addClass("selected")
 });
 
 $("#projects").waypoint(function () {
 	$(".navButton").removeClass("selected");
 	$("#projectsNav").addClass("selected");
+	$(".mobileNavButton").removeClass("selected")
+	$("#mobileProjectsNav").addClass("selected")
 });
 
-$("#contactCard").waypoint(function () {
+$("#contact").waypoint(function () {
 	$(".navButton").removeClass("selected");
 	$("#contactNav").addClass("selected");
+	$(".mobileNavButton").removeClass("selected")
+	$("#mobileContactNav").addClass("selected")
 });

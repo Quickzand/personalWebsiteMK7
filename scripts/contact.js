@@ -37,6 +37,7 @@ $("input[name='email']").on("change", function () {
 $("#contactSubmitButton").on("click", function () {
 	var email = $("input[name='email']").val();
 	var message = $("textarea[name='message']").val();
+	console.log("email: ", email);
 
 	if (email.length > 0 && message.length > 0) {
 		// Send the data to email.php

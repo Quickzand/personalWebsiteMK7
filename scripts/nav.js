@@ -7,6 +7,17 @@ $(".navButton").each(function () {
 	});
 });
 
+
+$(".mobileNavButton").each(function () {
+	$(this).on("click", function () {
+		console.log("Removing selection from: ", $(".navButton.selected"));
+		$(".navButton").removeClass("selected");
+		$(this).addClass("selected");
+		scrollToElement($(this).attr("data-navTo"));
+	});
+});
+
+
 function scrollToElement(id) {
 	// A bit hackey but subtracting one px for scroll to register new section
 	var pos = $("#" + id).position().top - 1;

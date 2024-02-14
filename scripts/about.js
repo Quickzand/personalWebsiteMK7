@@ -130,14 +130,7 @@ const aboutData = [
 					"Wrote scripts in NodeJS for data aggregation, sanitation, and analysis",
 			},
 		],
-		tags: [
-			"CloudFormation",
-			"AWS",
-			"NodeJS",
-			"Shell Scripting",
-			"Lambda",
-			"EC2",
-		],
+		tags: ["CloudFormation", "AWS", "NodeJS", "Bash", "Lambda", "EC2"],
 		location: $("#experience .aboutCardsContainer"),
 	},
 	{
@@ -280,6 +273,31 @@ function tagBuilder(tagName) {
 			tagImg.attr("src", "images/swiftUILogo.png");
 			tagImg.attr("alt", "SwiftUI Logo");
 			tagLabel.text("SwiftUI");
+			break;
+		case "cloudformation":
+			tagImg.attr("src", "images/cloudformationLogo.png");
+			tagImg.attr("alt", "CloudFormation Logo");
+			tagLabel.text("AWS Cloud Formation");
+			break;
+		case "nodejs":
+			tagImg.attr("src", "images/nodejsLogo.png");
+			tagImg.attr("alt", "NodeJS Logo");
+			tagLabel.text("NodeJS");
+			break;
+		case "bash":
+			tagImg.attr("src", "images/bashLogo.png");
+			tagImg.attr("alt", "Bash Scripting Logo");
+			tagLabel.text("Bash Scripting");
+			break;
+		case "lambda":
+			tagImg.attr("src", "images/lambdaLogo.svg");
+			tagImg.attr("alt", "AWS Lambda Logo");
+			tagLabel.text("AWS Lambda");
+			break;
+		case "ec2":
+			tagImg.attr("src", "images/ec2Logo.png");
+			tagImg.attr("alt", "EC2 Logo");
+			tagLabel.text("AWS EC2");
 			break;
 	}
 	tag.append(tagImg);

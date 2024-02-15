@@ -29,8 +29,6 @@ header {
 	background-size: 200% 100%;
 	background-position: 0 0;
 	position: relative;
-	/* inset shadow */
-	box-shadow: inset 0 0 500px 100px var(--main-background-color);
 	overflow: hidden;
 	pointer-events: none;
 }
@@ -38,7 +36,7 @@ header {
 #gridCanvas {
 	width: 100vw;
 	height: 100vh;
-	position: absolute;
+	position: fixed;
 	top: 0;
 	left: 0;
 	z-index: -1;
@@ -46,7 +44,7 @@ header {
 	background-image: var(--main-gradient);
 	background-position: 0 0;
 	background-size: 200% 100%;
-	animation: loopBG 5s ease infinite;
+	filter: blur(10px);
 }
 @keyframes fadeIn {
 	from {

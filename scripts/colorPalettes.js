@@ -21,7 +21,7 @@ const colorPalettes = [
 			secondAccentColor: "#06ace8",
 			mainFontColor: "#fdfdfd",
 			mainTextShadowColor: "rgba(0, 0, 0, 0.5)",
-			mainGlassyBackgroundColor: "rgba(0, 0, 0, 0.5)",
+			mainGlassyBackgroundColor: "rgba(18, 18, 18, 0.5)",
 		},
 		previewColors: ["#23d183", "#06ace8"],
 	},

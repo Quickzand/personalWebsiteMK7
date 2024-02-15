@@ -10,73 +10,139 @@ var mouse = {
 };
 
 class Cell {
-	opacity = 0;
+	opacity = 1;
 	introAnimationDelay = 0;
-
+	currentSize = cellSize;
+	shadowBlur = 0;
 	currentlyAnimating = false;
-	mouseOver = false;
-	additionalInset = 0;
+	additionalInset = 1; // Added property for snapShrink
+	isUnderMouse = false;
+
+	mouseLocked = false;
 
 	constructor(x, y, introAnimationDelay, skipIntro) {
 		this.x = x;
 		this.y = y;
 		this.introAnimationDelay = introAnimationDelay;
-		// Runs introanimation after a delay
+
 		if (!skipIntro) {
 			setTimeout(() => {
 				this.introAnimation(1);
 			}, this.introAnimationDelay);
-		} else {
-			this.opacity = 1;
 		}
 	}
 
 	draw() {
+		var drawOpacity = this.opacity;
+
+		if (!this.currentlyAnimating) {
+			// Get the current row
+			let i = cells.indexOf(cells.find((row) => row.includes(this)));
+			let j = cells[i].indexOf(this);
+			drawOpacity = this.computeAntiAliasedOpacity(i, j);
+		}
+
 		gridCTX.fillStyle = hexToRGBA(
 			$(":root").css("--main-background-color"),
 			this.opacity
 		);
-		// Draws cell taking into account the cell gap
+
 		gridCTX.fillRect(
-			this.x + (cellGap + this.additionalInset) / 2,
-			this.y + (cellGap + this.additionalInset) / 2,
-			cellSize - (cellGap + this.additionalInset),
-			cellSize - (cellGap + this.additionalInset)
+			this.x,
+			this.y,
+			this.currentSize + 2,
+			this.currentSize + 2
 		);
 	}
 
-	update() {
-		this.draw();
-		// If the mouse is over the cell, set the opacity to 0.5
-		// if (
-		// 	mouse.x > this.x &&
-		// 	mouse.x < this.x + cellSize &&
-		// 	mouse.y > this.y &&
-		// 	mouse.y < this.y + cellSize
-		// ) {
-		// 	this.additionalInset = 3;
-		// 	this.mouseOver = true;
-		// }
+	getAdjacentOpacity(i, j, distance) {
+		let totalOpacity = 0;
+		let count = 0;
 
-		// if (this.mouseOver) {
-		// 	if (
-		// 		mouse.x < this.x ||
-		// 		mouse.x > this.x + cellSize ||
-		// 		mouse.y < this.y ||
-		// 		mouse.y > this.y + cellSize
-		// 	) {
-		// 		this.additionalInset = 0;
-		// 		this.mouseOver = false;
-		// 	}
-		// }
+		if (i - distance >= 0) {
+			// Make sure the adjacent cell is ot currnetly mouseLocked
+			if (!cells[i - distance][j].mouseLocked) {
+				totalOpacity += cells[i - distance][j].opacity;
+				count++;
+			}
+		}
+		if (i + distance < cells.length) {
+			// Make sure the adjacent cell is ot currnetly mouseLocked
+			if (!cells[i + distance][j].mouseLocked) {
+				totalOpacity += cells[i + distance][j].opacity;
+				count++;
+			}
+		}
+		if (j - distance >= 0) {
+			// Make sure the adjacent cell is ot currnetly mouseLocked
+			if (!cells[i][j - distance].mouseLocked) {
+				totalOpacity += cells[i][j - distance].opacity;
+				count++;
+			}
+		}
+		if (j + distance < cells[i].length) {
+			// Make sure the adjacent cell is ot currnetly mouseLocked
+			if (!cells[i][j + distance].mouseLocked) {
+				totalOpacity += cells[i][j + distance].opacity;
+				count++;
+			}
+		}
+
+		return count > 0 ? totalOpacity / count : 0;
+	}
+
+	computeAntiAliasedOpacity(i, j) {
+		let drawOpacity = this.opacity;
+		for (let distance = 1; distance <= 1; distance++) {
+			let adjacentOpacity = this.getAdjacentOpacity(i, j, distance);
+			drawOpacity = (drawOpacity + adjacentOpacity) / 2;
+		}
+		return drawOpacity;
+	}
+
+	update() {
+		// Check if the mouse is over this cell and adjust properties
+		this.checkMouseHover();
+
+		// Drawing the cell with its current properties
+		this.draw();
+	}
+
+	checkMouseHover() {
+		// Calculate the boundaries of the cell
+		const cellBounds = {
+			left: this.x,
+			right: this.x + cellSize,
+			top: this.y,
+			bottom: this.y + cellSize,
+		};
+
+		// Check if the mouse is within the bounds of this cell
+		if (
+			mouse.x >= cellBounds.left &&
+			mouse.x <= cellBounds.right &&
+			mouse.y >= cellBounds.top &&
+			mouse.y <= cellBounds.bottom
+		) {
+			this.opacity = 0.25; // Cell is under mouse, reduce opacity
+			this.mouseLocked = true;
+		} else {
+			// If not under mouse, gradually increase opacity back to 1
+			if (this.opacity < 1 && this.mouseLocked) {
+				this.opacity += 0.01; // Adjust this rate as needed for smoothness
+				if (this.opacity > 1) {
+					this.opacity = 1;
+					this.mouseLocked = false;
+				}
+			}
+		}
 	}
 
 	introAnimation(duration) {
 		if (this.currentlyAnimating) return;
 		this.currentlyAnimating = true;
-		duration ? duration : (duration = 0.5);
+		duration = duration || 0.5;
 		this.opacity = 0;
-		// Animate the opacity of the cell using no libraries
 		var opacityInterval = setInterval(() => {
 			this.opacity += 0.01;
 			if (this.opacity >= 1) {
@@ -90,24 +156,27 @@ class Cell {
 	flash(duration, delay) {
 		if (this.currentlyAnimating) return;
 		this.currentlyAnimating = true;
-		duration = duration ? duration : 0.5;
-		delay = delay ? delay : 0;
-		var darkening;
+		duration = duration || 0.5;
+		delay = delay || 0;
+		let darkening;
+
 		setTimeout(() => {
 			this.opacity = 1;
 			darkening = true;
-			// Animate the opacity of the cell using no libraries
 			var opacityInterval = setInterval(() => {
-				if (this.opacity <= 0) {
-					darkening = false;
-				}
 				if (darkening) {
 					this.opacity -= 0.01;
+					this.shadowBlur += 0.5;
 				} else {
 					this.opacity += 0.01;
+					this.shadowBlur -= 0.5;
+				}
+				if (this.opacity <= 0.5) {
+					darkening = false;
 				}
 				if (this.opacity >= 1) {
 					this.opacity = 1;
+					this.shadowBlur = 0;
 					this.currentlyAnimating = false;
 					clearInterval(opacityInterval);
 				}
@@ -115,14 +184,12 @@ class Cell {
 		}, delay);
 	}
 
-	// Shrinks cell slowly and then quickly expands it
 	snapShrink(duration) {
 		if (this.currentlyAnimating) return;
 		this.currentlyAnimating = true;
 		duration = duration ? duration : 0.5;
 		var shrinking = true;
 		var insetTo = 13;
-		// Animate the opacity of the cell using no libraries
 		var shrinkInterval = setInterval(() => {
 			if (this.additionalInset >= insetTo) {
 				shrinking = false;
@@ -159,21 +226,55 @@ var gridCanvas = $("#gridCanvas");
 // Make the canvas the size of the window
 gridCanvas.attr("width", $(window).width());
 gridCanvas.attr("height", $(window).height());
-$(window).on("resize", function () {
+
+function sizeCanvas() {
 	gridCanvas.attr("width", $(window).width());
 	gridCanvas.attr("height", $(window).height());
 	colCount = Math.ceil($(window).width() / cellSize);
 	rowCount = Math.ceil($(window).height() / cellSize);
 	createCells(colCount, rowCount, true);
-});
+}
+$(window).on("resize", sizeCanvas);
 
-const cellSize = $(window).width() <= 750 ? 75 : 150;
+$(window).on("load", sizeCanvas);
+
+var cellSize = 70;
 
 var cellGap = 0.4;
 
+// ...
 
+// Calculate the number of columns and rows using Math.ceil
 var colCount = Math.ceil($(window).width() / cellSize);
 var rowCount = Math.ceil($(window).height() / cellSize);
+
+// Adjust cellSize to fit entire screen with these counts
+cellSize = Math.min(
+	$(window).width() / colCount,
+	$(window).height() / rowCount
+);
+
+// Recalculate columns and rows with the new cellSize
+colCount = Math.ceil($(window).width() / cellSize);
+rowCount = Math.ceil($(window).height() / cellSize);
+
+var totalWidth = colCount * cellSize + (colCount - 1) * cellGap;
+var totalHeight = rowCount * cellSize + (rowCount - 1) * cellGap;
+
+// Adjust the cellSize if the total grid dimensions exceed the window's dimensions
+if (totalWidth > $(window).width()) {
+	cellSize = $(window).width() / colCount;
+}
+
+if (totalHeight > $(window).height()) {
+	cellSize = $(window).height() / rowCount;
+}
+
+// Set the starting positions to 0
+var startX = 0;
+var startY = 0;
+
+// ...
 
 var gridCTX = gridCanvas[0].getContext("2d");
 
@@ -186,7 +287,12 @@ function createCells(colCount, rowCount, skipIntro) {
 		cells.push([]);
 		for (var j = 0; j < colCount; j++) {
 			cells[i].push(
-				new Cell(j * cellSize, i * cellSize, cellCount * 10, skipIntro)
+				new Cell(
+					startX + j * (cellSize + cellGap),
+					startY + i * (cellSize + cellGap),
+					cellCount * 10,
+					skipIntro
+				)
 			);
 			cellCount++;
 		}
@@ -206,11 +312,24 @@ function animateRaindrop() {
 		// If the cell is out of bounds, set it to the edge of the grid
 		if (randomCell < 0) randomCell = 0;
 		if (randomCell >= colCount) randomCell = colCount - 1;
+
+		// If the cell is mouseLocked, skip it
+		if (cells[i][randomCell].mouseLocked) {
+			continue;
+		}
+
 		// Add the cell to the raindrop array
 		rainDrop.push(cells[i][randomCell]);
 	}
 	for (var i = 0; i < rainDrop.length; i++) {
-		rainDrop[i].flash(10, i * 100);
+		// Compute a random number between 1 and 20 for the length of the flash
+		var randomFlashLength = Math.floor(Math.random() * 15) + 1;
+
+		// Compute a random number between 25 and 125 for the delay of the flash
+		var randomFlashDelay = Math.floor(Math.random() * 100) + 25;
+
+		// Flash the current cell for the random length
+		rainDrop[i].flash(randomFlashLength, i * randomFlashDelay);
 	}
 }
 
@@ -219,20 +338,73 @@ function animateSnapShrink() {
 	var randomRow = Math.floor(Math.random() * cells.length);
 	// Picks a random cell in the row
 	var randomCell = Math.floor(Math.random() * cells[randomRow].length);
-	cells[randomRow][randomCell].snapShrink();
+	cells[randomRow][randomCell].snapShrink(100);
 }
 
-createCells(colCount, rowCount);
+function animateExplosion() {
+	// Starting from the center, animate outwards in a circle
+	console.log("EXPLODING");
 
-// Run animateRaindrop every 1 seconds after 5 seconds
-setTimeout(function () {
-	setInterval(animateRaindrop, 1500);
-}, 5000);
+	var centerX, centerY;
 
-// Runs animateSnapShrink every 1 seconds after 5 seconds
-setTimeout(function () {
-	setInterval(animateSnapShrink, 200);
-}, 5000);
+	if (colCount % 2 === 0) {
+		centerX = colCount / 2 - 1;
+	} else {
+		centerX = Math.floor(colCount / 2);
+	}
+
+	if (rowCount % 2 === 0) {
+		centerY = rowCount / 2 - 1;
+	} else {
+		centerY = Math.floor(rowCount / 2);
+	}
+
+	var maxRadius = Math.max(colCount, rowCount) / 2;
+	var radius = 0;
+
+	function animateCircle() {
+		for (var i = 0; i < rowCount; i++) {
+			for (var j = 0; j < colCount; j++) {
+				// Check if the cell is approximately at the current radius from the center
+				var distance = Math.sqrt(
+					Math.pow(j - centerX, 2) + Math.pow(i - centerY, 2)
+				);
+				if (Math.abs(distance - radius) < 0.5) {
+					cells[i][j].flash(5, 0);
+				}
+			}
+		}
+
+		radius += 1;
+
+		// If the radius is smaller than the max radius, continue expanding
+		if (radius < maxRadius + 5) {
+			setTimeout(animateCircle, 50); // adjust the time as needed
+		}
+	}
+
+	animateCircle();
+}
+
+createCells(colCount, rowCount, true);
+// Only animate the raindrop if it is not within 10 seconds of the minute mark
+
+setInterval(function () {
+	var date = new Date();
+	if ((date.getSeconds() < 58) & (date.getSeconds() > 2)) {
+		animateRaindrop();
+	}
+}, 500);
+// setInterval(animateSnapShrink, 500);
+
+// setInterval(animateExplosion, 5000);
+// Every minute, on the minute mark, animate the explosion
+setInterval(function () {
+	var date = new Date();
+	if (date.getSeconds() === 0) {
+		animateExplosion();
+	}
+}, 1000);
 
 drawFrame();
 

@@ -176,55 +176,26 @@ const profs = [
 ];
 
 function skillBuilder(skill) {
-	var skillContainer = $("<div>").addClass("skillContainer");
+	var skillCard = $("<div>").addClass("skillCard");
 	var skillName = $("<span>").text(skill.name).addClass("skillName");
 	var skillIcon = $("<img>")
 		.attr("src", skill.icon)
 		.attr("alt", skill.name + " icon")
 		.addClass("skillIcon");
-	var skillHeader = $("<div>").addClass("skillHeader");
 
-	skillHeader.append(skillName);
-	skillHeader.append(skillIcon);
+	skillCard.append(skillIcon);
+	skillCard.append(skillName);
 
-	var skillBar = $("<div>").addClass("skillBar");
-	var skillBarBackgroundGradient = $("<div>").addClass(
-		"skillBarBackgroundGradient"
+	// Set the accent color of the skillContainer
+	skillCard.css("--accent-color", skill.accentColor);
+
+	//  Set slight transparency accent color
+	skillCard.css(
+		"--accent-color-slight-transparent",
+		transparencyModifier(skill.accentColor, 0.5)
 	);
-	if (skill.accentColor) {
-		skillBar.css("--accent-color", skill.accentColor);
-		skillBar.css("--first-gradient", hexModifier(skill.accentColor, -25));
-		skillBar.css("--second-gradient", hexModifier(skill.accentColor, 65));
-		skillBar.css(
-			"--accent-color-slight-transparent",
-			transparencyModifier(skill.accentColor, 0.5)
-		);
-		skillBarBackgroundGradient.css("--accent-color", skill.accentColor);
-		skillBarBackgroundGradient.css(
-			"--accent-color-slight-transparent",
-			transparencyModifier(skill.accentColor, 1)
-		);
-		skillBarBackgroundGradient.css(
-			"--first-gradient",
-			hexModifier(skill.accentColor, -25)
-		);
-		skillBarBackgroundGradient.css(
-			"--second-gradient",
-			hexModifier(skill.accentColor, 65)
-		);
-		skillBar.append(skillBarBackgroundGradient);
-	}
 
-	skillBar.css("--skill-level", skill.level * 100 + "%");
-	skillBarBackgroundGradient.css("--skill-level", skill.level * 100 + "%");
-
-	skillBar.attr("data-skill-level", skill.level * 100 + "%");
-
-	skillContainer.append(skillHeader);
-	skillContainer.append(skillBar);
-	skillContainer.append(skillBarBackgroundGradient);
-
-	return skillContainer;
+	return skillCard;
 }
 
 function orderBasedOffPercentage(skillList) {
@@ -232,7 +203,6 @@ function orderBasedOffPercentage(skillList) {
 		return b.level - a.level;
 	});
 }
-
 
 // compare two hex values and return how close they are
 function compareHex(hex1, hex2) {
@@ -380,7 +350,7 @@ var skillsContainer = $("#skills");
 $(window).on("scroll", function () {
 	if (skillsContainer.isInViewport()) {
 		$(".skillsHeader").addClass("animateIn");
-		$(".skillContainer").each(function (i) {
+		$(".skillCard").each(function (i) {
 			var skillContainer = $(this);
 			skillContainer.addClass("animateIn");
 			skillContainer.css("--index", i);

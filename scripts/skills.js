@@ -176,55 +176,26 @@ const profs = [
 ];
 
 function skillBuilder(skill) {
-	var skillContainer = $("<div>").addClass("skillContainer");
+	var skillCard = $("<div>").addClass("skillCard");
 	var skillName = $("<span>").text(skill.name).addClass("skillName");
 	var skillIcon = $("<img>")
 		.attr("src", skill.icon)
 		.attr("alt", skill.name + " icon")
 		.addClass("skillIcon");
-	var skillHeader = $("<div>").addClass("skillHeader");
 
-	skillHeader.append(skillName);
-	skillHeader.append(skillIcon);
+	skillCard.append(skillIcon);
+	skillCard.append(skillName);
 
-	var skillBar = $("<div>").addClass("skillBar");
-	var skillBarBackgroundGradient = $("<div>").addClass(
-		"skillBarBackgroundGradient"
+	// Set the accent color of the skillContainer
+	skillCard.css("--accent-color", skill.accentColor);
+
+	//  Set slight transparency accent color
+	skillCard.css(
+		"--accent-color-slight-transparent",
+		transparencyModifier(skill.accentColor, 0.5)
 	);
-	if (skill.accentColor) {
-		skillBar.css("--accent-color", skill.accentColor);
-		skillBar.css("--first-gradient", hexModifier(skill.accentColor, -25));
-		skillBar.css("--second-gradient", hexModifier(skill.accentColor, 65));
-		skillBar.css(
-			"--accent-color-slight-transparent",
-			transparencyModifier(skill.accentColor, 0.5)
-		);
-		skillBarBackgroundGradient.css("--accent-color", skill.accentColor);
-		skillBarBackgroundGradient.css(
-			"--accent-color-slight-transparent",
-			transparencyModifier(skill.accentColor, 1)
-		);
-		skillBarBackgroundGradient.css(
-			"--first-gradient",
-			hexModifier(skill.accentColor, -25)
-		);
-		skillBarBackgroundGradient.css(
-			"--second-gradient",
-			hexModifier(skill.accentColor, 65)
-		);
-		skillBar.append(skillBarBackgroundGradient);
-	}
 
-	skillBar.css("--skill-level", skill.level * 100 + "%");
-	skillBarBackgroundGradient.css("--skill-level", skill.level * 100 + "%");
-
-	skillBar.attr("data-skill-level", skill.level * 100 + "%");
-
-	skillContainer.append(skillHeader);
-	skillContainer.append(skillBar);
-	skillContainer.append(skillBarBackgroundGradient);
-
-	return skillContainer;
+	return skillCard;
 }
 
 function orderBasedOffPercentage(skillList) {
@@ -232,7 +203,6 @@ function orderBasedOffPercentage(skillList) {
 		return b.level - a.level;
 	});
 }
-
 
 // compare two hex values and return how close they are
 function compareHex(hex1, hex2) {
@@ -366,70 +336,69 @@ function transparencyModifier(hex, x) {
 var count = 0;
 
 orderBasedOffPercentage(programmingLanguages);
+
+// Upon entering #programmingLanguages section, animate in the skills
+var skillsContainer = $("#skills");
+var programmingLanguagesContainer = $("#programmingLanguages");
+var programmingLanguagesHasAnimated = false;
+var technologiesContainer = $("#technologies");
+var technologiesHasAnimated = false;
+var proficienciesContainer = $("#proficiencies");
+var proficienciesHasAnimated = false;
+$(window).on("scroll", function () {
+	if (
+		programmingLanguagesContainer.isInViewport() &&
+		!programmingLanguagesHasAnimated
+	) {
+		programmingLanguagesContainer.addClass("open");
+		programmingLanguagesHasAnimated = true;
+		programmingLanguagesContainer
+			.parent()
+			.find(".skillsHeader")
+			.addClass("animateIn");
+	}
+	if (technologiesContainer.isInViewport() && !technologiesHasAnimated) {
+		technologiesContainer.addClass("open");
+		technologiesHasAnimated = true;
+		technologiesContainer.parent().find(".skillsHeader").addClass("animateIn");
+	}
+	if (proficienciesContainer.isInViewport() && !proficienciesHasAnimated) {
+		proficienciesContainer.addClass("open");
+		proficienciesHasAnimated = true;
+		proficienciesContainer.parent().find(".skillsHeader").addClass("animateIn");
+	}
+});
+
 for (var i = 0; i < programmingLanguages.length; i++) {
 	var skill = programmingLanguages[i];
 	var skillContainer = skillBuilder(skill);
-	//  Adds a css variable animation-delay to the skill container
-	skillContainer.css("--animation-delay", i * 0.15 + "s");
+	skillContainer.css("--index", programmingLanguages.length - i);
+	skillContainer.on("click", function () {
+		$("#programmingLanguages").toggleClass("open");
+	});
 	$("#programmingLanguages").append(skillContainer);
 	count++;
 }
 
-// Upon entering #programmingLanguages section, animate in the skills
-var skillsContainer = $("#skills");
-$(window).on("scroll", function () {
-	if (skillsContainer.isInViewport()) {
-		$(".skillsHeader").addClass("animateIn");
-		$(".skillContainer").each(function (i) {
-			var skillContainer = $(this);
-			skillContainer.addClass("animateIn");
-			skillContainer.css("--index", i);
-		});
-	}
-});
-
 for (var i = 0; i < technologies.length; i++) {
 	var skill = technologies[i];
 	var skillContainer = skillBuilder(skill);
-	skillContainer.css("--animation-delay", i * 0.15 + "s");
+	skillContainer.css("--index", technologies.length - i);
+	skillContainer.on("click", function () {
+		$("#technologies").toggleClass("open");
+	});
+
 	$("#technologies").append(skillContainer);
 	count++;
 }
 
-$("#technologies").waypoint(function () {
-	$(".skillContainer").each(function (i) {
-		var skillContainer = $(this);
-		setTimeout(function () {
-			skillContainer.addClass("animateIn");
-		}, i * 100);
-	});
-});
-
 for (var i = 0; i < profs.length; i++) {
 	var skill = profs[i];
 	var skillContainer = skillBuilder(skill);
-	skillContainer.css("--animation-delay", i * 0.15 + "s");
+	skillContainer.css("--index", profs.length - i);
+	skillContainer.on("click", function () {
+		$("#proficiencies").toggleClass("open");
+	});
 	$("#proficiencies").append(skillContainer);
 	count++;
 }
-
-$("#proficiencies").waypoint(function () {
-	$(".skillContainer").each(function (i) {
-		var skillContainer = $(this);
-		setTimeout(function () {
-			skillContainer.addClass("animateIn");
-		}, i * 100);
-	});
-});
-
-function animateSkills() {
-	$(".skillContainer").removeClass("passiveAnimate");
-	// Wait 0.5 seconds before adding the class passiveAnimate
-	setTimeout(function () {
-		$(".skillContainer").addClass("passiveAnimate");
-	}, 500);
-}
-
-// Every 10 seconds add the class passiveAnimate to all skillContainers
-// This will cause the skills to animate
-setInterval(animateSkills, 10000);

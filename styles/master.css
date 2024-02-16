@@ -53,13 +53,14 @@ body {
 	padding: 0;
 	background-color: var(--main-background-color);
 	color: var(--main-font-color);
-	padding-bottom: 50vh;
+
 	width: calc(100vw - calc(var(--nav-margin-padding) * 2));
 	font-family: var(--body-font);
 	overflow-x: hidden;
 	min-height: calc(100% + env(safe-area-inset-top));
 	padding: env(safe-area-inset-top) env(safe-area-inset-right)
 		env(safe-area-inset-bottom) env(safe-area-inset-left);
+	padding-bottom: 25vh;
 }
 
 .gradientText,

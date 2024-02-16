@@ -336,70 +336,69 @@ function transparencyModifier(hex, x) {
 var count = 0;
 
 orderBasedOffPercentage(programmingLanguages);
+
+// Upon entering #programmingLanguages section, animate in the skills
+var skillsContainer = $("#skills");
+var programmingLanguagesContainer = $("#programmingLanguages");
+var programmingLanguagesHasAnimated = false;
+var technologiesContainer = $("#technologies");
+var technologiesHasAnimated = false;
+var proficienciesContainer = $("#proficiencies");
+var proficienciesHasAnimated = false;
+$(window).on("scroll", function () {
+	if (
+		programmingLanguagesContainer.isInViewport() &&
+		!programmingLanguagesHasAnimated
+	) {
+		programmingLanguagesContainer.addClass("open");
+		programmingLanguagesHasAnimated = true;
+		programmingLanguagesContainer
+			.parent()
+			.find(".skillsHeader")
+			.addClass("animateIn");
+	}
+	if (technologiesContainer.isInViewport() && !technologiesHasAnimated) {
+		technologiesContainer.addClass("open");
+		technologiesHasAnimated = true;
+		technologiesContainer.parent().find(".skillsHeader").addClass("animateIn");
+	}
+	if (proficienciesContainer.isInViewport() && !proficienciesHasAnimated) {
+		proficienciesContainer.addClass("open");
+		proficienciesHasAnimated = true;
+		proficienciesContainer.parent().find(".skillsHeader").addClass("animateIn");
+	}
+});
+
 for (var i = 0; i < programmingLanguages.length; i++) {
 	var skill = programmingLanguages[i];
 	var skillContainer = skillBuilder(skill);
-	//  Adds a css variable animation-delay to the skill container
-	skillContainer.css("--animation-delay", i * 0.15 + "s");
+	skillContainer.css("--index", programmingLanguages.length - i);
+	skillContainer.on("click", function () {
+		$("#programmingLanguages").toggleClass("open");
+	});
 	$("#programmingLanguages").append(skillContainer);
 	count++;
 }
 
-// Upon entering #programmingLanguages section, animate in the skills
-var skillsContainer = $("#skills");
-$(window).on("scroll", function () {
-	if (skillsContainer.isInViewport()) {
-		$(".skillsHeader").addClass("animateIn");
-		$(".skillCard").each(function (i) {
-			var skillContainer = $(this);
-			skillContainer.addClass("animateIn");
-			skillContainer.css("--index", i);
-		});
-	}
-});
-
 for (var i = 0; i < technologies.length; i++) {
 	var skill = technologies[i];
 	var skillContainer = skillBuilder(skill);
-	skillContainer.css("--animation-delay", i * 0.15 + "s");
+	skillContainer.css("--index", technologies.length - i);
+	skillContainer.on("click", function () {
+		$("#technologies").toggleClass("open");
+	});
+
 	$("#technologies").append(skillContainer);
 	count++;
 }
 
-$("#technologies").waypoint(function () {
-	$(".skillContainer").each(function (i) {
-		var skillContainer = $(this);
-		setTimeout(function () {
-			skillContainer.addClass("animateIn");
-		}, i * 100);
-	});
-});
-
 for (var i = 0; i < profs.length; i++) {
 	var skill = profs[i];
 	var skillContainer = skillBuilder(skill);
-	skillContainer.css("--animation-delay", i * 0.15 + "s");
+	skillContainer.css("--index", profs.length - i);
+	skillContainer.on("click", function () {
+		$("#proficiencies").toggleClass("open");
+	});
 	$("#proficiencies").append(skillContainer);
 	count++;
 }
-
-$("#proficiencies").waypoint(function () {
-	$(".skillContainer").each(function (i) {
-		var skillContainer = $(this);
-		setTimeout(function () {
-			skillContainer.addClass("animateIn");
-		}, i * 100);
-	});
-});
-
-function animateSkills() {
-	$(".skillContainer").removeClass("passiveAnimate");
-	// Wait 0.5 seconds before adding the class passiveAnimate
-	setTimeout(function () {
-		$(".skillContainer").addClass("passiveAnimate");
-	}, 500);
-}
-
-// Every 10 seconds add the class passiveAnimate to all skillContainers
-// This will cause the skills to animate
-setInterval(animateSkills, 10000);
